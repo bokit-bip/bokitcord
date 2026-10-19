@@ -769,10 +769,34 @@
 
   function initSocket() {
     if (state.socket) {
-      state.socket.disconnect();
+      try { state.socket.disconnect(); } catch(e) {}
     }
 
-    state.socket = io();
+    if (typeof io === 'undefined') {
+      console.warn('Socket.io library not loaded, using offline mock socket.');
+      state.socket = {
+        connected: false,
+        on: function() {},
+        emit: function() {},
+        connect: function() {},
+        disconnect: function() {}
+      };
+      return;
+    }
+
+    try {
+      state.socket = io();
+    } catch(e) {
+      console.warn('Socket.io connection error, using offline mock socket:', e);
+      state.socket = {
+        connected: false,
+        on: function() {},
+        emit: function() {},
+        connect: function() {},
+        disconnect: function() {}
+      };
+      return;
+    }
 
     state.socket.on('connect', () => {
       state.socket.emit('authenticate', { token: state.token });
