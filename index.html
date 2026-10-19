@@ -1,0 +1,2830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BokitCord — Community Chat</title>
+  <meta name="description" content="A modern Discord-inspired platform with admin-reviewed account creation by bokit, rich message embeds, and username-based friending." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=gg+sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <script src="hls.min.js"></script>
+  <link id="tab-favicon" rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%235865F2'><path d='M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.893.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z'/></svg>" />
+</head>
+<body>
+  <div id="app-root">
+    <!-- ================= AUTH VIEW ================= -->
+    <div id="auth-view" class="view-screen">
+      <div class="auth-backdrop">
+        <div class="auth-glow auth-glow-1"></div>
+        <div class="auth-glow auth-glow-2"></div>
+      </div>
+
+      <div class="auth-card-container">
+        <div class="auth-brand">
+          <div class="auth-logo-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.893.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+            </svg>
+          </div>
+          <h1 class="auth-brand-title">BokitCord</h1>
+          <p class="auth-brand-subtitle">Private community curated by <strong>bokit</strong></p>
+        </div>
+
+        <div class="auth-card">
+          <!-- Notification / Error alert box -->
+          <div id="auth-alert" class="auth-alert hidden">
+            <div id="auth-alert-icon" class="auth-alert-icon"></div>
+            <div id="auth-alert-content" class="auth-alert-content"></div>
+          </div>
+
+          <!-- TAB SWITCHER -->
+          <div class="auth-tabs">
+            <button id="tab-btn-login" class="auth-tab-btn active" type="button">Log In</button>
+            <button id="tab-btn-register" class="auth-tab-btn" type="button">Request Account</button>
+          </div>
+
+          <!-- LOGIN FORM -->
+          <form id="form-login" class="auth-form" autocomplete="off">
+            <div class="form-group">
+              <label for="login-username">USERNAME</label>
+              <input type="text" id="login-username" name="username" placeholder="Enter your username" required />
+            </div>
+
+            <div class="form-group">
+              <label for="login-password">PASSWORD</label>
+              <input type="password" id="login-password" name="password" placeholder="Enter your password" required />
+            </div>
+
+            <button type="submit" id="btn-login-submit" class="btn btn-blurple btn-block">
+              <span>Log In</span>
+            </button>
+          </form>
+
+          <!-- REGISTER / ACCOUNT REQUEST FORM -->
+          <form id="form-register" class="auth-form hidden" autocomplete="off">
+            <div class="register-step-1" id="reg-step-1">
+              <div class="form-group">
+                <label for="reg-username">
+                  UNIQUE USERNAME <span class="required-star">*</span>
+                  <span class="field-tip">(Used to log in & add friends)</span>
+                </label>
+                <div class="input-with-prefix">
+                  <span class="input-prefix">@</span>
+                  <input type="text" id="reg-username" placeholder="e.g. shadow_ninja" required maxlength="32" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="reg-displayname">
+                  DISPLAY NAME <span class="required-star">*</span>
+                  <span class="field-tip">(How you appear in chat)</span>
+                </label>
+                <input type="text" id="reg-displayname" placeholder="e.g. Shadow Ninja ⚡" required maxlength="32" />
+              </div>
+
+              <div class="form-group">
+                <label for="reg-password">
+                  PASSWORD <span class="required-star">*</span>
+                </label>
+                <input type="password" id="reg-password" placeholder="Create a secure password" required minlength="4" />
+              </div>
+
+              <!-- Note for bokit with strict 200 char limit -->
+              <div class="form-group">
+                <div class="label-with-counter">
+                  <label for="reg-note">
+                    NOTE FOR BOKIT <span class="badge-optional">Admin Review</span>
+                  </label>
+                  <span id="note-char-counter" class="char-counter">0 / 200</span>
+                </div>
+                <div class="note-input-container">
+                  <textarea
+                    id="reg-note"
+                    maxlength="200"
+                    rows="3"
+                    placeholder="Add an optional note for bokit (max 200 characters). Tell bokit who you are, why you want to join, or what you'd like to share!"
+                  ></textarea>
+                </div>
+                <div class="field-subtext">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                  </svg>
+                  <span>This note is sent directly to <strong>bokit</strong> for account approval.</span>
+                </div>
+              </div>
+
+              <button type="submit" id="btn-register-submit" class="btn btn-blurple btn-block">
+                <span>Submit Request to Bokit</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= GLOBAL TOP NAVIGATION BAR ================= -->
+    <header id="global-top-navbar" class="global-navbar hidden">
+      <div class="navbar-left">
+        <div class="navbar-brand">
+          <span class="brand-spark">BK</span>
+          <span class="brand-text">BokitCord</span>
+        </div>
+        <div class="navbar-status-pill">
+          <span class="status-pulse-dot"></span>
+          <span class="status-text">Online</span>
+        </div>
+      </div>
+
+      <nav class="navbar-center-tabs">
+        <button id="nav-tab-chat" class="navbar-tab active" type="button">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+          </svg>
+          <span>Discord Chat</span>
+          <span id="chat-tab-badge" class="chat-tab-badge hidden">0</span>
+        </button>
+        <button id="nav-tab-proxy" class="navbar-tab" type="button" title="Private Web Browser">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+          <span>Browser</span>
+          <span class="badge-proxy-tag">Scramjet</span>
+        </button>
+        <button id="nav-tab-updates" class="navbar-tab" type="button" title="Community Update Requests & Suggestions">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 11l3 3L22 4"></path>
+            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+          </svg>
+          <span>Update Requests</span>
+          <span class="badge-updates-tag">Req</span>
+        </button>
+        <button id="nav-tab-editor" class="navbar-tab" type="button" title="HTML &amp; JavaScript Code Playground">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+          </svg>
+          <span>Code Editor</span>
+          <span class="badge-editor-tag">HTML/JS</span>
+        </button>
+        <button id="nav-tab-games" class="navbar-tab" type="button" title="Games &amp; Arcade">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="6" width="20" height="12" rx="3"></rect>
+            <line x1="6" y1="12" x2="10" y2="12"></line>
+            <line x1="8" y1="10" x2="8" y2="14"></line>
+            <circle cx="15" cy="11" r="1"></circle>
+            <circle cx="17" cy="13" r="1"></circle>
+          </svg>
+          <span>Games</span>
+          <span class="badge-games-tag">Play</span>
+        </button>
+        <button id="nav-tab-movies" class="navbar-tab" type="button" title="Movie Theater &amp; Library">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+            <line x1="7" y1="2" x2="7" y2="22"></line>
+            <line x1="17" y1="2" x2="17" y2="22"></line>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <line x1="2" y1="7" x2="7" y2="7"></line>
+            <line x1="2" y1="17" x2="7" y2="17"></line>
+            <line x1="17" y1="17" x2="22" y2="17"></line>
+            <line x1="17" y1="7" x2="22" y2="7"></line>
+          </svg>
+          <span>Movies</span>
+          <span class="badge-movies-tag">Watch</span>
+        </button>
+      </nav>
+
+      <div class="navbar-right">
+        <button id="btn-notification-toggle" class="btn-navbar-icon" type="button" title="Desktop Notifications">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+          </svg>
+        </button>
+        <div class="wisp-quick-stat" id="navbar-wisp-stat" title="Wisp WebSocket Gateway">
+          <span class="wisp-icon">⚡</span>
+          <span class="wisp-label">Wisp: /wisp/</span>
+        </div>
+        <div class="nav-user-chip" id="navbar-user-chip">
+          <div class="nav-user-avatar" id="navbar-user-avatar">U</div>
+          <span class="nav-user-name" id="navbar-user-name">User</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ================= DISCORD APPLICATION VIEW ================= -->
+    <div id="discord-view" class="view-screen hidden">
+      <!-- 1. SERVER NAVIGATION RAIL -->
+      <nav class="server-rail" aria-label="Servers">
+        <!-- Direct Messages / Friends Home Button -->
+        <button id="nav-btn-home" class="server-icon-btn" title="Direct Messages & Friends">
+          <div class="server-pill"></div>
+          <div class="server-icon-inner brand-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.893.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+            </svg>
+          </div>
+          <div id="home-badge-count" class="rail-badge hidden">0</div>
+        </button>
+
+        <div class="rail-separator"></div>
+
+        <!-- Main Community Server -->
+        <button id="nav-btn-community" class="server-icon-btn active" title="Bokit Community">
+          <div class="server-pill"></div>
+          <div class="server-icon-inner community-icon">
+            <span>BK</span>
+          </div>
+        </button>
+
+        <!-- Proxy Quick Access Server Icon -->
+        <button id="nav-btn-proxy" class="server-icon-btn" title="Browser Proxy">
+          <div class="server-pill"></div>
+          <div class="server-icon-inner proxy-rail-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+          </div>
+        </button>
+
+        <!-- Admin Requests Special Icon (Shown for bokit) -->
+        <button id="nav-btn-admin" class="server-icon-btn admin-rail-btn hidden" title="Bokit Admin Requests">
+          <div class="server-pill"></div>
+          <div class="server-icon-inner admin-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <div id="admin-badge-count" class="rail-badge hidden">0</div>
+        </button>
+      </nav>
+
+      <!-- 2. CHANNELS / DM SIDEBAR -->
+      <aside class="channels-sidebar">
+        <!-- Header -->
+        <header class="sidebar-header">
+          <div class="sidebar-header-title">
+            <span id="current-space-title">Bokit Community</span>
+            <svg class="verified-badge" width="16" height="16" viewBox="0 0 24 24" fill="#5865F2">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+            </svg>
+          </div>
+        </header>
+
+        <!-- Dynamic Channel / DM List -->
+        <div class="sidebar-content custom-scrollbar">
+          <!-- Text Channels Section -->
+          <div id="channels-section" class="sidebar-section">
+            <div class="section-title">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+              <span>TEXT CHANNELS</span>
+            </div>
+            <ul id="channel-list" class="nav-list">
+              <!-- Rendered dynamically -->
+            </ul>
+          </div>
+
+          <!-- Direct Messages Section (Friends) -->
+          <div id="dm-section" class="sidebar-section hidden">
+            <div class="friends-nav-btn-wrapper">
+              <button id="btn-sidebar-friends" class="channel-item active">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                <span>Friends</span>
+              </button>
+            </div>
+            <div class="section-title">
+              <span>DIRECT MESSAGES</span>
+            </div>
+            <ul id="dm-list" class="nav-list">
+              <!-- Rendered dynamically -->
+            </ul>
+          </div>
+        </div>
+
+        <!-- Current User Profile Bar at bottom -->
+        <div class="user-panel">
+          <div class="user-avatar-wrap">
+            <div id="user-panel-avatar" class="user-avatar">
+              <span id="user-panel-avatar-text">U</span>
+            </div>
+            <div class="status-indicator online"></div>
+          </div>
+          <div class="user-info">
+            <div id="user-panel-displayname" class="user-displayname">User</div>
+            <div id="user-panel-username" class="user-username">@username</div>
+          </div>
+          <div class="user-actions">
+            <button id="btn-logout" class="icon-btn" title="Log Out">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                <polyline points="16 17 21 12 16 7"></polyline>
+                <line x1="21" y1="12" x2="9" y2="12"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- 3. MAIN CHAT / WORKSPACE CONTENT -->
+      <main class="main-chat-area">
+        <!-- TOP APP BAR -->
+        <header class="chat-header">
+          <div class="channel-header-info">
+            <span id="chat-header-icon" class="channel-hash">#</span>
+            <h2 id="chat-header-name" class="channel-title">general</h2>
+            <div class="header-divider"></div>
+            <span id="chat-header-topic" class="channel-topic">General conversation</span>
+          </div>
+
+          <div class="chat-header-actions">
+            <!-- Telegram Style Encryption Padlock & Fingerprint Button -->
+            <button id="btn-encryption-info" class="btn btn-telegram-e2ee" title="Telegram-Style AES-256-GCM End-to-End Encryption">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
+              </svg>
+              <span>E2EE (AES-256)</span>
+            </button>
+
+            <!-- Bokit Admin Review button in topbar -->
+            <button id="btn-topbar-admin" class="btn btn-admin-alert hidden">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+              <span>Account Requests</span>
+              <span id="admin-badge-count-top" class="count-pill">0</span>
+            </button>
+
+            <!-- Toggle Member Sidebar -->
+            <button id="btn-toggle-members" class="icon-btn active" title="Toggle Member List">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </button>
+          </div>
+        </header>
+
+        <!-- CHAT VIEW CONTAINER -->
+        <div id="chat-container" class="chat-inner-view">
+          <!-- Notification Permission Request Banner -->
+          <div id="dm-notification-banner" class="dm-notification-banner hidden">
+            <div class="notification-banner-content">
+              <span class="banner-bell-icon">🔔</span>
+              <div class="banner-text">
+                <strong>Enable Desktop Notifications</strong>
+                <span>Get alerted instantly when you receive direct messages, friend requests, or server mentions.</span>
+              </div>
+            </div>
+            <div class="notification-banner-actions">
+              <button id="btn-enable-notifications" class="btn btn-blurple btn-sm">Enable Notifications</button>
+              <button id="btn-dismiss-notifications" class="btn btn-secondary btn-sm">Dismiss</button>
+            </div>
+          </div>
+          <!-- Messages Scrollable Stream -->
+          <div id="message-stream" class="message-stream custom-scrollbar">
+            <!-- Messages inserted dynamically -->
+          </div>
+
+          <!-- Typing indicator bar -->
+          <div id="typing-indicator" class="typing-indicator hidden">
+            <div class="typing-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <span id="typing-text">Someone is typing...</span>
+          </div>
+
+          <!-- Message Input Bar -->
+          <div class="chat-input-container">
+            <!-- Staged Image Preview Tray -->
+            <div id="chat-image-preview-tray" class="chat-image-preview-tray hidden">
+              <div class="tray-preview-card">
+                <div class="tray-thumb-wrap">
+                  <img id="chat-image-preview-thumb" src="" alt="Staged image" />
+                </div>
+                <div class="tray-preview-info">
+                  <span id="chat-image-preview-name" class="tray-filename">image.png</span>
+                  <span id="chat-image-preview-size" class="tray-filesize">0 KB</span>
+                </div>
+                <button type="button" id="btn-cancel-staged-image" class="tray-close-btn" title="Remove attached image">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <form id="form-send-message" class="chat-input-form" autocomplete="off">
+              <!-- Hidden File Input for Image Upload -->
+              <input type="file" id="input-chat-image" accept="image/png, image/jpeg, image/jpg, image/gif, image/webp, image/svg+xml" style="display: none;" />
+
+              <!-- Image Attach Button -->
+              <button type="button" id="btn-attach-image" class="input-action-btn" title="Send Image (Click, Paste Ctrl+V, or Drag & Drop)">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                  <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                  <polyline points="21 15 16 10 5 21"></polyline>
+                </svg>
+                <span class="embed-btn-label">Image</span>
+              </button>
+
+              <!-- Embed Builder Trigger Button -->
+              <button type="button" id="btn-open-embed-modal" class="input-action-btn" title="Create Rich Embed">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="8" x2="12" y2="16"></line>
+                  <line x1="8" y1="12" x2="16" y2="12"></line>
+                </svg>
+                <span class="embed-btn-label">Embed</span>
+              </button>
+
+              <input
+                type="text"
+                id="chat-input-text"
+                placeholder="Message #general (attach image, embed, or type message...)"
+                maxlength="2000"
+              />
+
+              <button type="submit" id="btn-send-message" class="btn-send-msg" title="Send Message">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+              </button>
+            </form>
+
+            <!-- Mention Autocomplete Popup (@mention) -->
+            <div id="mention-autocomplete-popup" class="mention-autocomplete-popup hidden" role="listbox" aria-label="Mention Autocomplete">
+              <div class="mention-autocomplete-header">
+                <span>MEMBERS MATCHING</span>
+                <strong id="mention-query-display">@...</strong>
+              </div>
+              <div class="mention-autocomplete-list custom-scrollbar">
+                <div class="mention-item active" id="mention-autocomplete-item-everyone" data-mention="everyone" role="option">
+                  <div class="mention-avatar-wrap">
+                    <div class="mention-avatar-everyone">@</div>
+                  </div>
+                  <div class="mention-info">
+                    <span class="mention-primary">everyone</span>
+                    <span class="mention-sub">Notify all online channel members</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FRIENDS VIEW CONTAINER (When viewing Friends tab) -->
+        <div id="friends-container" class="friends-view hidden">
+          <!-- Friends Sub-Navigation -->
+          <div class="friends-subnav">
+            <div class="friends-subnav-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+              </svg>
+              <span class="bold-title">Friends</span>
+            </div>
+            <div class="subnav-divider"></div>
+            <button id="subnav-btn-online" class="subnav-tab active">Online</button>
+            <button id="subnav-btn-all" class="subnav-tab">All</button>
+            <button id="subnav-btn-pending" class="subnav-tab">
+              Pending <span id="pending-friends-badge" class="badge-mini hidden">0</span>
+            </button>
+            <button id="subnav-btn-add" class="subnav-tab tab-add-friend">Add Friend</button>
+          </div>
+
+          <!-- Friends Tab Content -->
+          <div class="friends-content-area custom-scrollbar">
+            <!-- Add Friend View -->
+            <div id="tab-content-add" class="friend-tab-pane">
+              <div class="add-friend-header">
+                <h3>ADD FRIEND</h3>
+                <p class="add-friend-sub">You can add friends with their unique Discord username.</p>
+                <div class="strict-rule-banner">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FEE75C" stroke-width="2">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                    <line x1="12" y1="9" x2="12" y2="13"></line>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                  </svg>
+                  <span><strong>Important Requirement:</strong> You can <em>only</em> add people by their <strong>@username</strong>, NOT by their Display Name!</span>
+                </div>
+              </div>
+
+              <form id="form-add-friend" class="add-friend-form" autocomplete="off">
+                <div class="add-friend-input-wrap">
+                  <input
+                    type="text"
+                    id="input-friend-username"
+                    placeholder="You can add friends by their username (e.g. bokit)"
+                    required
+                  />
+                  <button type="submit" class="btn btn-blurple">Send Friend Request</button>
+                </div>
+                <div id="add-friend-feedback" class="add-friend-feedback hidden"></div>
+              </form>
+
+              <div class="friend-quick-guide">
+                <h4>Tip: How to find someone's username?</h4>
+                <p>In the member list on the right, click any user's profile card to see their unique <code>@username</code> and click <strong>Copy Username</strong>.</p>
+              </div>
+            </div>
+
+            <!-- Friend List Display (Online / All / Pending) -->
+            <div id="tab-content-list" class="friend-tab-pane hidden">
+              <div class="friend-list-header">
+                <span id="friend-list-title">ALL FRIENDS — 0</span>
+              </div>
+              <div id="friends-list-container" class="friends-grid">
+                <!-- Injected dynamically -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- 4. RIGHT SIDEBAR - ACTIVE MEMBERS -->
+      <aside id="members-sidebar" class="members-sidebar custom-scrollbar">
+        <!-- Admin Section -->
+        <div class="member-category">
+          <span>ADMINISTRATOR & OWNER — <span id="count-admins">1</span></span>
+        </div>
+        <div id="admin-member-list" class="member-list"></div>
+
+        <!-- Members Section -->
+        <div class="member-category">
+          <span>MEMBERS — <span id="count-members">0</span></span>
+        </div>
+        <div id="regular-member-list" class="member-list"></div>
+      </aside>
+    </div>
+
+
+    <!-- ================= WEB PROXY VIEW (SCRAMJET & LIBCURL & WISP) ================= -->
+    <div id="proxy-view" class="view-screen hidden">
+      <div class="proxy-app-layout">
+        <!-- Top Address & Control Bar -->
+        <div id="proxy-control-bar" class="proxy-control-bar">
+          <div class="proxy-nav-buttons">
+            <button id="btn-proxy-back" class="icon-btn" title="Back">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+              </svg>
+            </button>
+            <button id="btn-proxy-forward" class="icon-btn" title="Forward">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+            <button id="btn-proxy-refresh" class="icon-btn" title="Reload">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="23 4 23 10 17 10"></polyline>
+                <polyline points="1 20 1 14 7 14"></polyline>
+                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+              </svg>
+            </button>
+            <button id="btn-proxy-home" class="icon-btn active" title="Browser Home">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Omnibox Search / URL Bar -->
+          <form id="form-proxy-omnibox" class="proxy-omnibox-form">
+            <div class="omnibox-badge">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
+              </svg>
+            </div>
+            <input
+              type="text"
+              id="input-proxy-url"
+              placeholder="Search or enter a web URL (e.g. wikipedia.org or https://...)"
+              autocomplete="off"
+            />
+            <div class="adblock-shield-badge" id="adblock-shield-badge" title="DaydreamX Ad &amp; Tracker Blocker Active">
+              <span class="shield-icon">🛡️</span>
+              <span class="shield-text">AdBlock ON</span>
+            </div>
+            <button type="submit" class="btn btn-blurple btn-proxy-go">Go</button>
+          </form>
+
+          <!-- Engine & Wisp Quick Actions -->
+          <div class="proxy-top-controls">
+            <!-- Search Engine Selector -->
+            <select id="select-search-engine" class="proxy-select" title="Default Search Engine">
+              <option value="duckduckgo" selected>🔍 DuckDuckGo</option>
+              <option value="google">🔍 Google</option>
+              <option value="bing">🔍 Bing</option>
+              <option value="brave">🔍 Brave</option>
+              <option value="yahoo">🔍 Yahoo</option>
+            </select>
+
+            <!-- Tab Cloaker Selector -->
+            <select id="select-tab-cloaker" class="proxy-select" title="Tab Cloaker / Stealth Disguise">
+              <option value="default" selected>🎭 Cloak: Off</option>
+              <option value="classroom">🎭 Google Classroom</option>
+              <option value="drive">🎭 Google Drive</option>
+              <option value="canvas">🎭 Canvas LMS</option>
+              <option value="aaa">🎭 AAA Driving Course</option>
+            </select>
+
+            <!-- Stealth Popout -->
+            <button type="button" id="btn-proxy-stealth-popout" class="btn btn-secondary btn-sm" title="Open in unblockable about:blank stealth window">
+              <span>🕶️ Popout</span>
+            </button>
+
+            <!-- GBA Emulator Quick Button -->
+            <button type="button" id="btn-proxy-quick-gba" class="btn btn-secondary btn-sm" title="Launch GBA Emulator (gba.js.org)">
+              <span>🎮 GBA</span>
+            </button>
+
+            <button type="button" id="btn-toggle-wisp-panel" class="btn btn-secondary btn-sm" title="Wisp Diagnostics &amp; Ping">
+              <span>⚡ Wisp</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Wisp Server & Diagnostics Drawer -->
+        <div id="wisp-diagnostics-drawer" class="wisp-diagnostics-drawer">
+          <div class="wisp-drawer-content">
+            <div class="wisp-drawer-left">
+              <div class="wisp-tag">WISP PROTOCOL &bull; LIBCURL TRANSPORT</div>
+              <div class="wisp-url-row">
+                <span class="wisp-url-label">Endpoint:</span>
+                <code id="display-wisp-url" class="wisp-code">ws://localhost:3000/wisp/</code>
+              </div>
+              <div id="wisp-ping-result" class="wisp-ping-result">
+                <span class="ping-dot ready"></span>
+                <span id="wisp-ping-text">Ready to ping Wisp server</span>
+              </div>
+            </div>
+            <div class="wisp-drawer-right">
+              <button type="button" id="btn-ping-wisp" class="btn btn-success">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+                <span>Ping Wisp Server</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= PETEZAH NEW TAB VIEW ================= -->
+        <div id="proxy-home-page" class="pz-newtab-container">
+          <!-- Dark Bokeh Rain Background Layers -->
+          <div class="pz-backdrop"></div>
+          <div class="pz-rain-overlay"></div>
+
+          <!-- Top Navigation Header -->
+          <header class="pz-top-bar">
+            <div class="pz-top-left">
+              <!-- Floating App Dock (Instagram, Spotify, TikTok, +) -->
+              <div class="pz-dock">
+                <button type="button" class="pz-dock-btn" data-url="https://www.instagram.com" title="Instagram">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                  </svg>
+                </button>
+                <button type="button" class="pz-dock-btn" data-url="https://open.spotify.com" title="Spotify">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.477 2 2 6.477 2 12c0 5.524 4.477 10 10 10 5.524 0 10-4.476 10-10 0-5.523-4.476-10-10-10zm4.586 14.424c-.18.295-.563.387-.857.207-2.35-1.435-5.308-1.76-8.794-.963-.335.077-.67-.133-.746-.469-.077-.334.132-.67.467-.746 3.808-.87 7.076-.496 9.723 1.115.294.18.387.562.207.856zm1.224-2.723c-.226.367-.707.482-1.074.256-2.69-1.653-6.79-2.133-9.972-1.168-.413.125-.85-.11-1.02-.524-.124-.413.11-.85.524-1.02 3.633-1.103 8.147-.568 11.286 1.382.367.226.482.707.256 1.074zm.105-2.835C14.692 8.95 9.375 8.775 6.297 9.71c-.494.15-1.018-.13-1.168-.624-.15-.493.13-1.018.624-1.168C9.28 6.828 15.15 7.027 18.887 9.246c.444.264.59.84.327 1.284-.264.444-.84.59-1.299.336z"/>
+                  </svg>
+                </button>
+                <button type="button" class="pz-dock-btn" data-url="https://www.tiktok.com" title="TikTok">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .58.04.85.12V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.82 4.49 6.28 6.28 0 0 0 1.87-4.49V8.58a8.28 8.28 0 0 0 4.9 1.58V6.69z"/>
+                  </svg>
+                </button>
+                <button type="button" class="pz-dock-btn" data-url="https://accounts.snapchat.com" title="Snapchat">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2.5c-3.1 0-5.4 2.2-5.4 5.3 0 1.1.2 2.2.3 2.7-.3.2-.7.3-1.2.1-.5-.2-.9-.1-1.1.2-.2.4 0 .9.5 1.2.6.3 1.2.5 1.4.8.1.3-.3 1.4-1.6 2.5-.8.7-1.7 1.1-2.1 1.3-.3.2-.4.5-.2.8.2.3.8.5 1.8.7.4.1.6.4.7.8.1.4.3.7.8.7.4 0 1-.2 1.8-.2.8 0 1.6.2 2.5.8.9.6 1.8.8 2.8.8s1.9-.2 2.8-.8c.9-.6 1.7-.8 2.5-.8.8 0 1.4.2 1.8.2.5 0 .7-.3.8-.7.1-.4.3-.7.7-.8 1-.2 1.6-.4 1.8-.7.2-.3.1-.6-.2-.8-.4-.2-1.3-.6-2.1-1.3-1.3-1.1-1.7-2.2-1.6-2.5.2-.3.8-.5 1.4-.8.5-.3.7-.8.5-1.2-.2-.3-.6-.4-1.1-.2-.5.2-.9.1-1.2-.1.1-.5.3-1.6.3-2.7 0-3.1-2.3-5.3-5.4-5.3z"/>
+                  </svg>
+                </button>
+                <button type="button" id="btn-pz-dock-add" class="pz-dock-btn" title="Add Shortcut">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </button>
+              </div>
+
+              <!-- Floating Trending Button Below Dock -->
+              <button type="button" id="btn-pz-trending" class="pz-pill-btn pz-pill-trending">
+                <span class="pz-pill-icon">🔥</span>
+                <span>Trending</span>
+              </button>
+            </div>
+
+          </header>
+
+          <!-- Center Stage (Title, Search Box, Categories, Engine) -->
+          <main class="pz-center-stage">
+            <h1 class="pz-brand-title">BokitWare</h1>
+
+            <!-- Central Search Bar with Ctrl+K badge -->
+            <form id="form-pz-search" class="pz-search-box">
+              <div class="pz-search-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+              </div>
+              <input
+                type="text"
+                id="input-pz-search"
+                class="pz-search-input"
+                placeholder="Search or enter URL..."
+                autocomplete="off"
+                spellcheck="false"
+              />
+              <div class="pz-shortcut-badge" title="Press Ctrl+K to search">
+                <span class="pz-kbd">Ctrl</span>
+                <span class="pz-kbd">K</span>
+              </div>
+            </form>
+
+            <!-- Category Quick-Action Icons Row -->
+            <div class="pz-category-row">
+              <button type="button" class="pz-cat-btn" id="pz-cat-games" title="Games">
+                <div class="pz-cat-icon">🎮</div>
+                <span class="pz-cat-label">Games</span>
+              </button>
+              <button type="button" class="pz-cat-btn" id="pz-cat-apps" title="Apps">
+                <div class="pz-cat-icon">🚀</div>
+                <span class="pz-cat-label">Apps</span>
+              </button>
+              <button type="button" class="pz-cat-btn" id="pz-cat-music" title="Music">
+                <div class="pz-cat-icon">🎵</div>
+                <span class="pz-cat-label">Music</span>
+              </button>
+              <button type="button" class="pz-cat-btn" id="pz-cat-movies" title="Movies Library">
+                <div class="pz-cat-icon">🎬</div>
+                <span class="pz-cat-label">Movies</span>
+              </button>
+              <button type="button" class="pz-cat-btn" id="pz-cat-tv" title="TV">
+                <div class="pz-cat-icon">📺</div>
+                <span class="pz-cat-label">TV</span>
+              </button>
+              <button type="button" class="pz-cat-btn" id="pz-cat-drive" title="Drive">
+                <div class="pz-cat-icon">📁</div>
+                <span class="pz-cat-label">Drive</span>
+              </button>
+              <button type="button" class="pz-cat-btn" id="pz-cat-chat" title="Chat">
+                <div class="pz-cat-icon">💬</div>
+                <span class="pz-cat-label">Chat</span>
+              </button>
+              <button type="button" class="pz-cat-btn" id="pz-cat-add" title="Add">
+                <div class="pz-cat-icon">➕</div>
+                <span class="pz-cat-label">Add</span>
+              </button>
+            </div>
+
+            <!-- Custom User Shortcuts Row (dynamically populated from storage) -->
+            <div id="pz-custom-shortcuts-row" class="pz-custom-shortcuts-row hidden"></div>
+
+            <!-- Centered Engine Selector Pill Dropdown -->
+            <div class="pz-engine-wrapper">
+              <button type="button" id="pz-engine-trigger" class="pz-engine-pill">
+                <span class="pz-engine-globe">🌐</span>
+                <span id="pz-engine-current-name">Default</span>
+                <span class="pz-engine-arrow">▾</span>
+              </button>
+              <div id="pz-engine-dropdown" class="pz-engine-menu hidden">
+                <button type="button" class="pz-engine-option active" data-engine="duckduckgo">
+                  <span>🦆 DuckDuckGo (Default)</span>
+                </button>
+                <button type="button" class="pz-engine-option" data-engine="google">
+                  <span>🔍 Google</span>
+                </button>
+                <button type="button" class="pz-engine-option" data-engine="bing">
+                  <span>🔎 Bing</span>
+                </button>
+                <button type="button" class="pz-engine-option" data-engine="brave">
+                  <span>🦁 Brave</span>
+                </button>
+                <button type="button" class="pz-engine-option" data-engine="yahoo">
+                  <span>🟣 Yahoo</span>
+                </button>
+              </div>
+            </div>
+          </main>
+
+          <!-- Bottom Status Footer Bar -->
+          <footer class="pz-footer-bar">
+            <div class="pz-footer-left">
+              <span class="pz-footer-item pz-tab-count">
+                <span class="pz-tab-dot"></span>
+                <span id="pz-tab-count-text">1 tab</span>
+              </span>
+              <span class="pz-footer-sep">&bull;</span>
+              <a href="#" class="pz-footer-link" id="pz-link-discord">Discord</a>
+              <span class="pz-footer-sep">&bull;</span>
+              <a href="#" class="pz-footer-link" id="pz-link-tos">ToS</a>
+              <span class="pz-footer-sep">&bull;</span>
+              <a href="#" class="pz-footer-link" id="pz-link-privacy">Privacy</a>
+              <span class="pz-footer-sep">&bull;</span>
+              <a href="#" class="pz-footer-link" id="pz-link-dmca">DMCA</a>
+            </div>
+
+            <div class="pz-footer-right">
+              <button type="button" id="btn-pz-footer-trending" class="pz-footer-btn">
+                <span>🔥 Trending</span>
+              </button>
+              <span class="pz-footer-sep">&bull;</span>
+              <span class="pz-footer-item pz-secure-indicator" title="Encrypted Local Proxy via Scramjet &amp; Wisp">
+                <span class="pz-status-indicator online"></span>
+                <span>🔒 Secure</span>
+              </span>
+              <span class="pz-footer-sep">&bull;</span>
+              <span id="pz-live-clock" class="pz-footer-clock">12:00 PM</span>
+            </div>
+          </footer>
+        </div>
+
+        <!-- PeteZah Trending Modal -->
+        <div id="modal-pz-trending" class="modal-overlay hidden">
+          <div class="modal-card pz-modal-card">
+            <div class="modal-header">
+              <div class="pz-modal-title-row">
+                <span class="pz-fire-icon">🔥</span>
+                <span class="modal-title">Trending Games &amp; Apps</span>
+              </div>
+              <button type="button" class="btn-close-modal" id="btn-close-pz-trending">&times;</button>
+            </div>
+            <div class="pz-modal-body custom-scrollbar">
+              <div class="pz-trending-grid">
+                <div class="pz-trend-card" data-url="https://gba.js.org/">
+                  <div class="pz-trend-icon">🎮</div>
+                  <div class="pz-trend-info">
+                    <div class="pz-trend-name">GBA Online Retro</div>
+                    <div class="pz-trend-desc">Pokemon, Mario, Zelda &amp; classic games</div>
+                  </div>
+                  <button type="button" class="pz-btn-play">Play</button>
+                </div>
+                <div class="pz-trend-card" data-url="https://www.tiktok.com">
+                  <div class="pz-trend-icon">📱</div>
+                  <div class="pz-trend-info">
+                    <div class="pz-trend-name">TikTok Web</div>
+                    <div class="pz-trend-desc">Trending videos &amp; viral creators</div>
+                  </div>
+                  <button type="button" class="pz-btn-play">Open</button>
+                </div>
+                <div class="pz-trend-card" data-url="https://open.spotify.com">
+                  <div class="pz-trend-icon">🎵</div>
+                  <div class="pz-trend-info">
+                    <div class="pz-trend-name">Spotify Music</div>
+                    <div class="pz-trend-desc">Millions of songs, playlists &amp; podcasts</div>
+                  </div>
+                  <button type="button" class="pz-btn-play">Open</button>
+                </div>
+                <div class="pz-trend-card" data-url="https://www.youtube.com">
+                  <div class="pz-trend-icon">▶️</div>
+                  <div class="pz-trend-info">
+                    <div class="pz-trend-name">YouTube</div>
+                    <div class="pz-trend-desc">Videos, gaming streams &amp; shorts</div>
+                  </div>
+                  <button type="button" class="pz-btn-play">Open</button>
+                </div>
+                <div class="pz-trend-card" data-url="https://duckduckgo.com/?q=retro+bowl+unblocked">
+                  <div class="pz-trend-icon">🏈</div>
+                  <div class="pz-trend-info">
+                    <div class="pz-trend-name">Retro Bowl</div>
+                    <div class="pz-trend-desc">8-bit football coaching game</div>
+                  </div>
+                  <button type="button" class="pz-btn-play">Play</button>
+                </div>
+                <div class="pz-trend-card" data-url="https://duckduckgo.com/?q=slope+game+unblocked">
+                  <div class="pz-trend-icon">⚡</div>
+                  <div class="pz-trend-info">
+                    <div class="pz-trend-name">Slope</div>
+                    <div class="pz-trend-desc">Fast-paced 3D neon downhill ball roll</div>
+                  </div>
+                  <button type="button" class="pz-btn-play">Play</button>
+                </div>
+                <div class="pz-trend-card" data-url="https://duckduckgo.com/?q=subway+surfers+unblocked">
+                  <div class="pz-trend-icon">🏃</div>
+                  <div class="pz-trend-info">
+                    <div class="pz-trend-name">Subway Surfers</div>
+                    <div class="pz-trend-desc">Dodge trains and escape the inspector</div>
+                  </div>
+                  <button type="button" class="pz-btn-play">Play</button>
+                </div>
+                <div class="pz-trend-card" data-url="https://duckduckgo.com/?q=1v1.lol+unblocked">
+                  <div class="pz-trend-icon">🎯</div>
+                  <div class="pz-trend-info">
+                    <div class="pz-trend-name">1v1.LOL</div>
+                    <div class="pz-trend-desc">Online third-person shooter &amp; builder</div>
+                  </div>
+                  <button type="button" class="pz-btn-play">Play</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- BokitWare Get Links Modal -->
+        <div id="modal-pz-links" class="modal-overlay hidden">
+          <div class="modal-card pz-modal-card">
+            <div class="modal-header">
+              <div class="pz-modal-title-row">
+                <span class="pz-link-icon">🔗</span>
+                <span class="modal-title">BokitWare Links &amp; Mirrors</span>
+              </div>
+              <button type="button" class="btn-close-modal" id="btn-close-pz-links">&times;</button>
+            </div>
+            <div class="pz-modal-body custom-scrollbar">
+              <p class="pz-modal-sub">Official domains and proxy mirrors:</p>
+              <div class="pz-links-list">
+                <div class="pz-link-row">
+                  <div class="pz-link-details">
+                    <span class="pz-link-title">Official Site</span>
+                    <code class="pz-link-url">https://bokitware.org</code>
+                  </div>
+                  <button type="button" class="btn btn-secondary btn-sm pz-copy-link-btn" data-copy="https://bokitware.org">Copy</button>
+                </div>
+                <div class="pz-link-row">
+                  <div class="pz-link-details">
+                    <span class="pz-link-title">Backup Mirror 1</span>
+                    <code class="pz-link-url">https://pzmath.org</code>
+                  </div>
+                  <button type="button" class="btn btn-secondary btn-sm pz-copy-link-btn" data-copy="https://pzmath.org">Copy</button>
+                </div>
+                <div class="pz-link-row">
+                  <div class="pz-link-details">
+                    <span class="pz-link-title">Local Proxy Gateway</span>
+                    <code class="pz-link-url" id="pz-display-local-mirror">http://localhost:3000</code>
+                  </div>
+                  <button type="button" class="btn btn-secondary btn-sm pz-copy-link-btn" id="btn-copy-local-mirror">Copy</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PeteZah Apps Modal -->
+        <div id="modal-pz-apps" class="modal-overlay hidden">
+          <div class="modal-card pz-modal-card">
+            <div class="modal-header">
+              <div class="pz-modal-title-row">
+                <span>🚀</span>
+                <span class="modal-title">Quick Web Apps</span>
+              </div>
+              <button type="button" class="btn-close-modal" id="btn-close-pz-apps">&times;</button>
+            </div>
+            <div class="pz-modal-body custom-scrollbar">
+              <div class="pz-trending-grid">
+                <div class="pz-trend-card" data-url="https://www.tiktok.com">
+                  <div class="pz-trend-icon">📱</div>
+                  <div class="pz-trend-info">
+                    <div class="pz-trend-name">TikTok</div>
+                    <div class="pz-trend-desc">Short videos &amp; viral trends</div>
+                  </div>
+                  <button type="button" class="pz-btn-play">Open</button>
+                </div>
+                <div class="pz-trend-card" data-url="https://www.youtube.com">
+                  <div class="pz-trend-icon">▶️</div>
+                  <div class="pz-trend-info">
+                    <div class="pz-trend-name">YouTube</div>
+                    <div class="pz-trend-desc">Watch videos, live streams &amp; clips</div>
+                  </div>
+                  <button type="button" class="pz-btn-play">Open</button>
+                </div>
+                <div class="pz-trend-card" data-url="https://www.reddit.com">
+                  <div class="pz-trend-icon">🤖</div>
+                  <div class="pz-trend-info">
+                    <div class="pz-trend-name">Reddit</div>
+                    <div class="pz-trend-desc">Communities, discussions &amp; memes</div>
+                  </div>
+                  <button type="button" class="pz-btn-play">Open</button>
+                </div>
+                <div class="pz-trend-card" data-url="https://discord.com/app">
+                  <div class="pz-trend-icon">💬</div>
+                  <div class="pz-trend-info">
+                    <div class="pz-trend-name">Discord Web</div>
+                    <div class="pz-trend-desc">Direct messaging &amp; servers</div>
+                  </div>
+                  <button type="button" class="pz-btn-play">Open</button>
+                </div>
+                <div class="pz-trend-card" data-url="https://www.twitch.tv">
+                  <div class="pz-trend-icon">👾</div>
+                  <div class="pz-trend-info">
+                    <div class="pz-trend-name">Twitch</div>
+                    <div class="pz-trend-desc">Live gameplay and esports streams</div>
+                  </div>
+                  <button type="button" class="pz-btn-play">Open</button>
+                </div>
+                <div class="pz-trend-card" data-url="https://github.com">
+                  <div class="pz-trend-icon">🐙</div>
+                  <div class="pz-trend-info">
+                    <div class="pz-trend-name">GitHub</div>
+                    <div class="pz-trend-desc">Developer code &amp; repositories</div>
+                  </div>
+                  <button type="button" class="pz-btn-play">Open</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PeteZah Add Shortcut Modal -->
+        <div id="modal-pz-add" class="modal-overlay hidden">
+          <div class="modal-card pz-modal-card" style="max-width: 440px;">
+            <div class="modal-header">
+              <div class="pz-modal-title-row">
+                <span>➕</span>
+                <span class="modal-title">Add Shortcut</span>
+              </div>
+              <button type="button" class="btn-close-modal" id="btn-close-pz-add">&times;</button>
+            </div>
+            <form id="form-pz-add-shortcut" class="pz-modal-body">
+              <div class="form-group">
+                <label for="input-pz-shortcut-title">Shortcut Name</label>
+                <input type="text" id="input-pz-shortcut-title" class="form-input" placeholder="e.g. Google Docs" required />
+              </div>
+              <div class="form-group" style="margin-top: 14px;">
+                <label for="input-pz-shortcut-url">Web URL</label>
+                <input type="text" id="input-pz-shortcut-url" class="form-input" placeholder="e.g. docs.google.com" required />
+              </div>
+              <div class="modal-actions" style="margin-top: 20px;">
+                <button type="button" class="btn btn-secondary" id="btn-cancel-pz-add">Cancel</button>
+                <button type="submit" class="btn btn-blurple">Add Shortcut</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- PeteZah Info / Legal Modal -->
+        <div id="modal-pz-info" class="modal-overlay hidden">
+          <div class="modal-card pz-modal-card">
+            <div class="modal-header">
+              <span id="pz-info-title" class="modal-title">Information</span>
+              <button type="button" class="btn-close-modal" id="btn-close-pz-info">&times;</button>
+            </div>
+            <div id="pz-info-body" class="pz-modal-body custom-scrollbar" style="line-height: 1.6; font-size: 14px; color: var(--text-normal);">
+            </div>
+          </div>
+        </div>
+
+        <!-- Proxy Webview Frame -->
+        <div id="proxy-viewport-container" class="proxy-viewport-container hidden">
+          <iframe id="proxy-iframe" src="about:blank" allow="fullscreen; gamepad"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= UPDATE REQUESTS & SUGGESTIONS VIEW ================= -->
+    <div id="updates-view" class="view-screen hidden">
+      <div class="updates-backdrop-overlay"></div>
+
+      <div class="updates-content-container custom-scrollbar">
+        <!-- Header -->
+        <header class="updates-header">
+          <div class="updates-header-left">
+            <div class="updates-logo-badge">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+            </div>
+            <div>
+              <div class="updates-title-row">
+                <h1 class="updates-main-title">Update Requests & Suggestions</h1>
+                <span class="updates-core-tag">Community Board</span>
+              </div>
+              <p class="updates-main-subtitle">Suggest features, games, fixes, or site improvements directly to Bokit. Upvote ideas you want to see!</p>
+            </div>
+          </div>
+
+          <div class="updates-header-right">
+            <div class="updates-stats-row">
+              <div class="updates-stat-chip" title="Total Requests Submitted">
+                <span class="stat-label">Total</span>
+                <span id="stat-total-requests" class="stat-value">0</span>
+              </div>
+              <div class="updates-stat-chip stat-completed" title="Completed & Live Features">
+                <span class="stat-label">Completed</span>
+                <span id="stat-completed-requests" class="stat-value">0</span>
+              </div>
+              <div class="updates-stat-chip stat-planned" title="Planned for Development">
+                <span class="stat-label">Planned</span>
+                <span id="stat-planned-requests" class="stat-value">0</span>
+              </div>
+            </div>
+            <button type="button" id="btn-open-submit-update-req" class="btn btn-updates-submit" title="Submit a new update request">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+              <span>Submit Request</span>
+            </button>
+          </div>
+        </header>
+
+        <!-- Controls / Filters Row -->
+        <div class="updates-controls-bar">
+          <div class="updates-search-wrapper">
+            <input type="text" id="input-updates-search" class="updates-search-input" placeholder="🔍 Search suggestions or authors..." />
+          </div>
+
+          <div class="updates-category-filters" id="updates-category-filters">
+            <button type="button" class="category-pill active" data-category="all">All</button>
+            <button type="button" class="category-pill" data-category="feature">✨ Features</button>
+            <button type="button" class="category-pill" data-category="game">🎮 Games</button>
+            <button type="button" class="category-pill" data-category="bug">🐛 Bugs</button>
+            <button type="button" class="category-pill" data-category="proxy">⚡ Proxy/Wisp</button>
+            <button type="button" class="category-pill" data-category="improvement">🚀 Improvements</button>
+            <button type="button" class="category-pill" data-category="other">💡 Other</button>
+          </div>
+
+          <div class="updates-selects-wrapper">
+            <select id="select-updates-status" class="updates-dropdown-select" title="Filter by Status">
+              <option value="all">All Statuses</option>
+              <option value="pending">Pending Review</option>
+              <option value="under_review">Under Review</option>
+              <option value="planned">Planned</option>
+              <option value="in_progress">In Progress</option>
+              <option value="completed">Completed</option>
+              <option value="declined">Declined</option>
+            </select>
+
+            <select id="select-updates-sort" class="updates-dropdown-select" title="Sort Order">
+              <option value="popular">🔥 Most Upvoted</option>
+              <option value="newest">🕒 Newest First</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Cards Grid -->
+        <div id="updates-grid" class="updates-grid">
+          <!-- Request cards injected dynamically -->
+        </div>
+      </div>
+
+      <!-- Modal: Submit Update Request -->
+      <div id="modal-add-update-req" class="modal-overlay hidden">
+        <div class="modal-card updates-modal-card">
+          <header class="modal-header">
+            <div class="updates-modal-title-row">
+              <span class="updates-modal-icon">💡</span>
+              <div>
+                <h3 class="modal-title">Submit Update Request</h3>
+                <p class="modal-subtitle">Share your ideas, game requests, or bug reports with Bokit</p>
+              </div>
+            </div>
+            <button type="button" id="btn-close-update-req" class="modal-close-btn">&times;</button>
+          </header>
+
+          <form id="form-add-update-req" class="modal-body custom-scrollbar">
+            <div class="form-group">
+              <label for="input-update-req-title">REQUEST TITLE <span class="required-star">*</span></label>
+              <input type="text" id="input-update-req-title" class="form-input" placeholder="e.g. Add Paper Mario 64, or Custom Chat Themes" maxlength="100" required />
+            </div>
+
+            <div class="form-group" style="margin-top: 14px;">
+              <label for="select-update-req-category">CATEGORY</label>
+              <select id="select-update-req-category" class="form-input">
+                <option value="feature">✨ New Feature</option>
+                <option value="game">🎮 Game Request</option>
+                <option value="bug">🐛 Bug Fix</option>
+                <option value="proxy">⚡ Proxy / Wisp</option>
+                <option value="improvement">🚀 Improvement / Quality of Life</option>
+                <option value="other">💡 Other</option>
+              </select>
+            </div>
+
+            <div class="form-group" style="margin-top: 14px;">
+              <div class="label-row" style="display:flex; justify-content:space-between; align-items:center;">
+                <label for="input-update-req-desc">DESCRIPTION & DETAILS <span class="required-star">*</span></label>
+                <span id="update-req-char-count" class="field-char-count">0/2000</span>
+              </div>
+              <textarea id="input-update-req-desc" class="form-input" rows="4" placeholder="Explain what you want added, why it's useful, or how to reproduce an issue..." maxlength="2000" required></textarea>
+            </div>
+
+            <div id="update-req-alert" class="auth-alert hidden" style="margin-top: 14px;">
+              <div id="update-req-alert-icon" class="auth-alert-icon"></div>
+              <div id="update-req-alert-content" class="auth-alert-content"></div>
+            </div>
+
+            <div class="modal-actions" style="margin-top: 20px;">
+              <button type="button" id="btn-cancel-update-req" class="btn btn-secondary">Cancel</button>
+              <button type="submit" id="btn-submit-update-req" class="btn btn-blurple">
+                <span>Submit Request</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Modal: Admin Moderate / Status Update (Bokit only) -->
+      <div id="modal-admin-update-req" class="modal-overlay hidden">
+        <div class="modal-card updates-modal-card">
+          <header class="modal-header">
+            <div class="updates-modal-title-row">
+              <span class="updates-modal-icon">👑</span>
+              <div>
+                <h3 class="modal-title">Moderate Update Request</h3>
+                <p class="modal-subtitle">Update status and post official response &bull; Bokit Exclusive</p>
+              </div>
+            </div>
+            <button type="button" id="btn-close-admin-update-req" class="modal-close-btn">&times;</button>
+          </header>
+
+          <form id="form-admin-update-req" class="modal-body custom-scrollbar">
+            <input type="hidden" id="input-admin-req-id" />
+            
+            <div class="form-group">
+              <label for="select-admin-req-status">LIFECYCLE STATUS</label>
+              <select id="select-admin-req-status" class="form-input">
+                <option value="pending">⏳ Pending Review</option>
+                <option value="under_review">🔍 Under Review</option>
+                <option value="planned">📅 Planned</option>
+                <option value="in_progress">🚧 In Progress</option>
+                <option value="completed">✅ Completed</option>
+                <option value="declined">❌ Declined</option>
+              </select>
+            </div>
+
+            <div class="form-group" style="margin-top: 14px;">
+              <label for="input-admin-req-response">ADMIN RESPONSE NOTE <span class="badge-optional">Optional</span></label>
+              <textarea id="input-admin-req-response" class="form-input" rows="3" placeholder="e.g. Added in the latest update! / Working on this next!"></textarea>
+            </div>
+
+            <div id="admin-update-req-alert" class="auth-alert hidden" style="margin-top: 14px;">
+              <div id="admin-update-req-alert-icon" class="auth-alert-icon"></div>
+              <div id="admin-update-req-alert-content" class="auth-alert-content"></div>
+            </div>
+
+            <div class="modal-actions" style="margin-top: 20px; display: flex; justify-content: space-between;">
+              <button type="button" id="btn-admin-req-delete" class="btn btn-danger-outline">Delete Request</button>
+              <div style="display: flex; gap: 8px;">
+                <button type="button" id="btn-cancel-admin-update-req" class="btn btn-secondary">Cancel</button>
+                <button type="submit" id="btn-save-admin-update-req" class="btn btn-blurple">Save Changes</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= HTML & JS CODE PLAYGROUND VIEW ================= -->
+    <div id="editor-view" class="view-screen hidden">
+      <div class="editor-container">
+        <!-- Top Toolbar -->
+        <div class="editor-toolbar">
+          <div class="editor-toolbar-left">
+            <div class="editor-branding">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5865F2" stroke-width="2.5">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+              <span class="editor-title">Playground</span>
+            </div>
+
+            <div class="editor-file-tabs">
+              <button type="button" id="tab-editor-html" class="editor-file-tab active" data-lang="html">
+                <span class="tab-dot dot-html"></span>
+                <span>index.html</span>
+              </button>
+              <button type="button" id="tab-editor-css" class="editor-file-tab" data-lang="css">
+                <span class="tab-dot dot-css"></span>
+                <span>style.css</span>
+              </button>
+              <button type="button" id="tab-editor-js" class="editor-file-tab" data-lang="js">
+                <span class="tab-dot dot-js"></span>
+                <span>script.js</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="editor-toolbar-right">
+            <select id="select-editor-template" class="editor-select-template" title="Load a Starter Template">
+              <option value="">📂 Load Template...</option>
+              <option value="starter">✨ Starter Interactive App</option>
+              <option value="canvas">🎨 Canvas Animation Loop</option>
+              <option value="clicker">🎮 Retro Clicker Game</option>
+              <option value="blank">📄 Blank Slate</option>
+            </select>
+
+            <button type="button" id="btn-editor-autorun" class="btn-editor-tool active" title="Toggle Auto-Run on typing">
+              <span class="tool-icon">⚡</span>
+              <span>Auto-Run</span>
+            </button>
+
+            <button type="button" id="btn-editor-run" class="btn-editor-run" title="Run Code (Ctrl + Enter)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+              <span>Run</span>
+            </button>
+
+            <button type="button" id="btn-editor-clear" class="btn-editor-tool" title="Clear Code">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="3 6 5 6 21 6"></polyline>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+              </svg>
+            </button>
+
+            <button type="button" id="btn-editor-download" class="btn-editor-tool" title="Download as Single HTML File">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+            </button>
+
+            <button type="button" id="btn-editor-popout" class="btn-editor-tool" title="Open Preview in New Window">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Split Workspace -->
+        <div class="editor-workspace">
+          <!-- Left: Code Editing Area -->
+          <div class="editor-code-pane">
+            <div class="editor-textarea-wrapper">
+              <textarea id="editor-textarea-html" class="code-textarea custom-scrollbar" spellcheck="false" placeholder="<!-- Write your HTML here -->"></textarea>
+              <textarea id="editor-textarea-css" class="code-textarea custom-scrollbar hidden" spellcheck="false" placeholder="/* Write your CSS here */"></textarea>
+              <textarea id="editor-textarea-js" class="code-textarea custom-scrollbar hidden" spellcheck="false" placeholder="// Write your JavaScript here"></textarea>
+            </div>
+            <div class="editor-status-bar">
+              <span id="editor-cursor-pos" class="editor-status-item">HTML (Tab indents)</span>
+              <span id="editor-save-indicator" class="editor-status-item">💾 Draft Auto-Saved</span>
+            </div>
+          </div>
+
+          <!-- Right: Live Preview & Console Output -->
+          <div class="editor-preview-pane">
+            <div class="editor-preview-header">
+              <div class="preview-header-left">
+                <span class="preview-dot"></span>
+                <span class="preview-label">Live Output</span>
+              </div>
+              <div class="preview-header-right">
+                <button type="button" id="btn-refresh-preview" class="btn-preview-action" title="Reload Output Frame">🔄</button>
+                <button type="button" id="btn-toggle-console" class="btn-preview-action console-btn" title="Toggle Developer Console">
+                  <span>Console</span>
+                  <span id="console-badge" class="console-badge hidden">0</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="editor-preview-frame-container">
+              <iframe id="editor-preview-frame" sandbox="allow-scripts allow-modals allow-forms allow-pointer-lock" class="editor-preview-frame"></iframe>
+            </div>
+
+            <!-- Console Drawer -->
+            <div id="editor-console-panel" class="editor-console-panel">
+              <div class="console-panel-header">
+                <span class="console-panel-title">Console Output</span>
+                <button type="button" id="btn-clear-console" class="btn-clear-console" title="Clear Console">Clear</button>
+              </div>
+              <div id="editor-console-logs" class="editor-console-logs custom-scrollbar">
+                <div class="console-empty-tip">Console output will appear here...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= GAMES & ARCADE VIEW ================= -->
+    <section id="games-view" class="view-screen hidden" aria-label="Games &amp; Arcade">
+      <div class="games-container custom-scrollbar">
+        <!-- Games List View -->
+        <div id="games-list-view" class="games-list-view">
+          <!-- Top Header -->
+          <header class="games-header">
+            <div class="games-header-top">
+              <div class="games-header-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                <span>Interactive Web Arcade</span>
+              </div>
+              <span id="games-count-badge" class="games-count-badge">67 Games Available</span>
+            </div>
+            <h1 class="games-title">Play Classic Web &amp; Retro Games</h1>
+            <p class="games-subtitle">Fast, zero-install games running directly inside your browser. No downloads or plugins required.</p>
+            <!-- Search & Filter Bar -->
+            <div class="games-toolbar">
+              <div class="games-search-box">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input
+                  type="text"
+                  id="games-search-input"
+                  class="games-search-input"
+                  placeholder="Search games by title, category, or keyword..."
+                  autocomplete="off"
+                  spellcheck="false"
+                />
+                <button type="button" id="btn-clear-games-search" class="btn-clear-search hidden" title="Clear search">&times;</button>
+              </div>
+              <div class="games-category-pills" id="games-category-pills">
+                <button type="button" class="category-pill active" data-filter="all">All</button>
+                <button type="button" class="category-pill" data-filter="riddle">🏫 Riddle School</button>
+                <button type="button" class="category-pill" data-filter="horror">Horror</button>
+                <button type="button" class="category-pill" data-filter="action">Action</button>
+                <button type="button" class="category-pill" data-filter="retro">Retro</button>
+                <button type="button" class="category-pill" data-filter="platformer">Platformer</button>
+                <button type="button" class="category-pill" data-filter="adventure">Adventure</button>
+                <button type="button" class="category-pill" data-filter="puzzle">Puzzle</button>
+              </div>
+            </div>
+          </header>
+
+          <!-- Games Cards Grid -->
+          <div id="games-grid" class="games-grid">
+            <!-- Game cards injected dynamically via app.js -->
+          </div>
+
+          <!-- Empty state if no games found -->
+          <div id="games-empty-state" class="games-empty-state hidden">
+            <div class="empty-icon">🎮</div>
+            <h3>No games found</h3>
+            <p>Try searching for a different title or filter category.</p>
+          </div>
+
+          <!-- Arcade Legal & Monetag Compliance Footer -->
+          <footer class="arcade-compliance-footer">
+            <div class="compliance-footer-inner">
+              <div class="compliance-brand">
+                <span class="compliance-logo">BK</span>
+                <span>BokitWare Arcade &bull; Digital Entertainment &amp; Fair Use Preservation</span>
+              </div>
+              <div class="compliance-links">
+                <button type="button" class="compliance-link-btn" id="btn-open-privacy-policy">Privacy Policy</button>
+                <span class="compliance-sep">&bull;</span>
+                <button type="button" class="compliance-link-btn" id="btn-open-terms-service">Terms of Service</button>
+              </div>
+            </div>
+          </footer>
+        </div>
+
+        <!-- Single Game Fullscreen Player View -->
+        <div id="game-player-view" class="game-player-view hidden">
+          <!-- Game Player Top Bar -->
+          <div class="game-player-topbar">
+            <div class="game-player-left">
+              <button type="button" id="btn-game-back" class="btn-game-tool" title="Back to Games List">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <line x1="19" y1="12" x2="5" y2="12"></line>
+                  <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                <span>Back to Games</span>
+              </button>
+              <div class="game-player-divider"></div>
+              <div class="game-player-info">
+                <span id="game-player-thumb" class="game-player-thumb">🎮</span>
+                <span id="game-player-title" class="game-player-title">Playing Game</span>
+              </div>
+            </div>
+            <div class="game-player-controls">
+              <button type="button" id="btn-game-reload" class="btn-game-tool" title="Reload Game">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="23 4 23 10 17 10"></polyline>
+                  <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                </svg>
+                <span>Reload</span>
+              </button>
+              <button type="button" id="btn-game-popout" class="btn-game-tool" title="Open Game in New Tab">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+                <span>Pop Out</span>
+              </button>
+              <button type="button" id="btn-game-fullscreen" class="btn-game-tool btn-game-primary" title="Toggle Fullscreen">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+                </svg>
+                <span>Fullscreen</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Embedded Game Container & Interstitial Preroll Ad -->
+          <div class="game-player-frame-wrapper" id="game-player-wrapper">
+            <!-- Game Interstitial Preroll Ad (Hidden & Disabled) -->
+            <div id="game-interstitial-overlay" class="game-interstitial-overlay hidden" style="display:none !important;" aria-hidden="true">
+              <div class="interstitial-backdrop"></div>
+              <div class="interstitial-modal-box">
+                <header class="interstitial-header">
+                  <div class="interstitial-badge-wrap">
+                    <span class="interstitial-tag">ARCADE</span>
+                    <span class="interstitial-dot">&bull;</span>
+                    <span class="interstitial-game-target">Loading <strong id="interstitial-game-name">Game</strong></span>
+                  </div>
+                  <button type="button" id="btn-skip-game-ad" class="btn-skip-ad" disabled title="Skip">
+                    <span class="skip-label"><strong id="interstitial-timer-label"></strong></span>
+                  </button>
+                </header>
+
+                <div class="interstitial-progress-track">
+                  <div id="interstitial-progress-fill" class="interstitial-progress-bar" style="width: 0%;"></div>
+                </div>
+
+                <div class="interstitial-stage">
+                  <div id="monetag-ad-slot" class="monetag-ad-slot">
+                    <a id="ad-direct-link-card" href="#" class="ad-stage-card" style="display:none;">
+                      <div class="ad-network-label" id="ad-network-badge"></div>
+                      <div id="monetag-banner-injection" class="monetag-banner-injection"></div>
+                    </a>
+                  </div>
+                </div>
+
+                <footer class="interstitial-footer"></footer>
+              </div>
+            </div>
+
+            <iframe
+              id="game-player-frame"
+              class="game-player-frame"
+              allow="fullscreen; gamepad; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen="true"
+              webkitallowfullscreen="true"
+              mozallowfullscreen="true"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= MOVIES THEATER & LIBRARY VIEW ================= -->
+    <!-- ================= MOVIES THEATER & LIBRARY VIEW ================= -->
+    <section id="movies-view" class="view-screen hidden" aria-label="Movies Theater &amp; Library">
+      <div class="movies-container custom-scrollbar">
+        <!-- Movies Library Browser -->
+        <div id="movies-list-view" class="movies-list-view">
+          <header class="movies-header">
+            <div class="movies-header-top">
+              <div class="movies-header-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                <span>Bokit Cinema &bull; Streaming Library</span>
+              </div>
+              <div class="movies-header-actions">
+                <span id="movies-count-badge" class="movies-count-badge">Streaming Catalog</span>
+                <button type="button" id="btn-movie-providers-debug" class="btn-movie-providers-debug" title="View streaming & metadata provider health, latency, and status diagnostics">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                  </svg>
+                  <span>Provider Status</span>
+                </button>
+                <button type="button" id="btn-refresh-movies" class="btn-refresh-movies" title="Rescan local movies folder">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <polyline points="23 4 23 10 17 10"></polyline>
+                    <polyline points="1 20 1 14 7 14"></polyline>
+                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                  </svg>
+                  <span>Rescan Local</span>
+                </button>
+              </div>
+            </div>
+            
+            <h1 class="movies-title">Stream Any Movie &amp; Cinema</h1>
+            <p class="movies-subtitle">Browse trending blockbusters, search any film worldwide, or stream your local <code>movies/</code> collection in high definition.</p>
+            
+            <!-- Search & Toolbar -->
+            <div class="movies-toolbar">
+              <div class="movies-search-box">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input
+                  type="text"
+                  id="movies-search-input"
+                  class="movies-search-input"
+                  placeholder="Search any movie or TV series worldwide (e.g. Inception, Breaking Bad, Scary Movie)..."
+                  autocomplete="off"
+                  spellcheck="false"
+                />
+                <button type="button" id="btn-clear-movies-search" class="btn-clear-search hidden" title="Clear search">&times;</button>
+              </div>
+              <div class="movies-filter-select-wrap">
+                <select id="movies-type-filter" class="movies-select-filter" title="Filter by Type">
+                  <option value="all">All Content</option>
+                  <option value="movie">Movies Only</option>
+                  <option value="series">TV Series</option>
+                </select>
+                <select id="movies-year-filter" class="movies-select-filter" title="Filter by Year">
+                  <option value="all">All Years</option>
+                  <option value="2026">2026</option>
+                  <option value="2025">2025</option>
+                  <option value="2024">2024</option>
+                  <option value="2023">2023</option>
+                  <option value="2022">2022</option>
+                  <option value="2020s">2020s</option>
+                  <option value="2010s">2010s</option>
+                  <option value="2000s">2000s</option>
+                  <option value="classics">Classics</option>
+                </select>
+              </div>
+              <button type="button" id="btn-movies-search-submit" class="btn-movies-search-action">Search</button>
+            </div>
+
+            <!-- Genre / Category Filters -->
+            <div class="movies-genre-pills" id="movies-genre-pills">
+              <!-- Rendered dynamically (All, Trending, Movies, TV, Local, Watchlist, Genres) -->
+            </div>
+          </header>
+
+          <!-- Hero Spotlight Banner -->
+          <div id="movies-hero-banner" class="movies-hero-banner">
+            <div class="movies-hero-backdrop" id="movies-hero-backdrop"></div>
+            <div class="movies-hero-overlay"></div>
+            <div class="movies-hero-container">
+              <div class="movies-hero-poster-wrap">
+                <img id="movies-hero-poster-img" src="" alt="Poster" class="movies-hero-poster" />
+              </div>
+              <div class="movies-hero-content">
+                <div class="movies-hero-tag">
+                  <span class="movies-hero-fire">🔥</span>
+                  <span id="movies-hero-tag-text">FEATURED SPOTLIGHT</span>
+                </div>
+                <h2 id="movies-hero-title" class="movies-hero-title">Inception</h2>
+                <div class="movies-hero-meta">
+                  <span id="movies-hero-year">2010</span>
+                  <span>&bull;</span>
+                  <span id="movies-hero-rating" class="hero-rating-badge">⭐ 8.8</span>
+                  <span>&bull;</span>
+                  <span id="movies-hero-runtime">148 min</span>
+                  <span>&bull;</span>
+                  <span id="movies-hero-badge" class="hero-hd-badge">4K ULTRA</span>
+                  <span>&bull;</span>
+                  <span id="movies-hero-genre">Action, Sci-Fi</span>
+                </div>
+                <p id="movies-hero-desc" class="movies-hero-desc">
+                  A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.
+                </p>
+                <div class="movies-hero-actions">
+                  <button type="button" id="btn-hero-watch" class="btn-hero-primary" title="Play Movie">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                      <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                    <span>PLAY</span>
+                  </button>
+                  <button type="button" id="btn-hero-details" class="btn-hero-secondary" title="View Details">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <line x1="12" y1="16" x2="12" y2="12"></line>
+                      <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                    <span>MORE INFO</span>
+                  </button>
+                  <button type="button" id="btn-hero-watchlist" class="btn-hero-secondary" title="Add to My List">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    <span id="hero-watchlist-text">+ MY LIST</span>
+                  </button>
+                  <button type="button" id="btn-hero-trailer" class="btn-hero-secondary" title="Watch Trailer">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                      <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                    <span>Trailer</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Hero Carousel Controls -->
+            <button type="button" id="btn-hero-prev" class="hero-carousel-nav prev" title="Previous Featured Title">&lsaquo;</button>
+            <button type="button" id="btn-hero-next" class="hero-carousel-nav next" title="Next Featured Title">&rsaquo;</button>
+            <div id="movies-hero-dots" class="hero-carousel-dots"></div>
+          </div>
+
+          <!-- AllFlix Streaming Homepage: Horizontal Movie & TV Rows -->
+          <div id="movies-home-rows" class="movies-home-rows">
+            <!-- Dynamically injected horizontal scrolling rows:
+                 - Continue Watching (if items exist)
+                 - My List / Watchlist (if items exist)
+                 - Trending Movies
+                 - Popular Movies
+                 - Top Rated Movies
+                 - Now Playing
+                 - Upcoming Releases
+                 - Recently Added & Local Media
+                 - Genres (Action, Adventure, Animation, Comedy, Crime, Drama, Horror, Sci-Fi, Thriller, Fantasy)
+                 - TV Sections (Trending TV, Popular TV, Top Rated Series, Recently Added TV)
+            -->
+          </div>
+
+          <!-- Grid / Search / "View All" View (Hidden on homepage, shown when searching or viewing all) -->
+          <div id="movies-grid-section" class="movies-grid-section hidden">
+            <div class="movies-grid-header">
+              <div class="movies-grid-title-wrap">
+                <button type="button" id="btn-back-to-rows" class="btn-back-to-rows" title="Back to All Rows">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                  </svg>
+                  <span>Back to Browsing</span>
+                </button>
+                <h3 class="movies-section-title" id="movies-catalog-title">Catalog Titles</h3>
+                <span id="movies-catalog-count" class="movies-section-badge">0 Titles</span>
+              </div>
+            </div>
+
+            <!-- Movies Cards Grid -->
+            <div id="movies-grid" class="movies-grid">
+              <!-- Movie cards injected dynamically via app.js -->
+            </div>
+
+            <!-- Infinite Scroll & Load More Controls -->
+            <div id="movies-pagination-wrap" class="movies-pagination-wrap">
+              <button type="button" id="btn-movies-load-more" class="btn-movies-load-more hidden">
+                <span>Load More Titles</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div id="movies-infinite-anchor" class="movies-infinite-anchor"></div>
+              <div id="movies-catalog-end-hint" class="movies-end-hint hidden">You've reached the end of the catalog</div>
+            </div>
+          </div>
+
+          <!-- Empty State -->
+          <div id="movies-empty-state" class="movies-empty-state hidden">
+            <div class="movies-empty-icon">🎬</div>
+            <h3 id="movies-empty-title">No movies found</h3>
+            <p id="movies-empty-desc">Try searching for another movie title, actor, or genre, or add movies into the <strong><code>movies/</code></strong> directory.</p>
+            <button type="button" id="btn-rescan-empty" class="btn-movies-action">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="23 4 23 10 17 10"></polyline>
+                <polyline points="1 20 1 14 7 14"></polyline>
+                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+              </svg>
+              <span>Scan Local movies Folder</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Single Movie Fullscreen Theater Player -->
+        <div id="movie-player-view" class="movie-player-view hidden">
+          <div class="movie-player-topbar hidden" id="movie-player-topbar">
+            <div class="movie-player-left">
+              <button type="button" id="btn-movie-back" class="btn-movie-tool" title="Back to Movie Library">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <line x1="19" y1="12" x2="5" y2="12"></line>
+                  <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                <span>Back</span>
+              </button>
+              <div class="movie-player-meta">
+                <h2 id="movie-player-title" class="movie-player-title">Movie Title</h2>
+                <div class="movie-player-submeta">
+                  <span id="movie-player-year" class="movie-player-year"></span>
+                  <span id="movie-player-badge" class="movie-player-badge">HD</span>
+                  <span id="movie-player-size" class="movie-player-size"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Server selector, Quality, Speed, TV controls in player header -->
+            <div class="movie-player-center">
+              <div class="player-server-pill" id="player-server-pill">
+                <span class="server-status-dot healthy" id="movie-player-server-dot" title="Server status: Online"></span>
+                <label for="movie-player-server-select">Server:</label>
+                <select id="movie-player-server-select" class="movie-server-dropdown" title="Change streaming server"></select>
+              </div>
+              <div class="player-server-pill" id="player-quality-pill" title="Select Video Quality">
+                <span class="quality-badge-icon">HD</span>
+                <label for="movie-player-quality-select">Quality:</label>
+                <select id="movie-player-quality-select" class="movie-server-dropdown" title="Select Video Quality">
+                  <option value="auto">Auto HD</option>
+                  <option value="1080p">1080p</option>
+                  <option value="720p">720p</option>
+                  <option value="480p">480p</option>
+                  <option value="360p">360p</option>
+                </select>
+              </div>
+              <div class="player-server-pill" id="player-speed-pill" title="Playback Speed">
+                <label for="movie-player-speed-select">Speed:</label>
+                <select id="movie-player-speed-select" class="movie-server-dropdown" title="Playback Speed">
+                  <option value="0.5">0.5x</option>
+                  <option value="0.75">0.75x</option>
+                  <option value="1" selected>1.0x</option>
+                  <option value="1.25">1.25x</option>
+                  <option value="1.5">1.5x</option>
+                  <option value="2">2.0x</option>
+                </select>
+              </div>
+              <div class="player-server-pill hidden" id="player-subtitle-pill" title="Select Subtitle Track">
+                <span class="subtitle-badge-icon">CC</span>
+                <label for="movie-player-subtitle-select">Subtitles:</label>
+                <select id="movie-player-subtitle-select" class="movie-server-dropdown" title="Select Subtitle Track">
+                  <option value="off">Off</option>
+                </select>
+              </div>
+              <div id="movie-player-tv-controls" class="movie-player-tv-controls hidden">
+                <button type="button" id="btn-player-prev-ep" class="btn-movie-nav" title="Previous Episode">&laquo; Prev</button>
+                <select id="movie-player-ep-select" class="movie-server-dropdown" title="Select Episode"></select>
+                <button type="button" id="btn-player-next-ep" class="btn-movie-nav" title="Next Episode">Next &raquo;</button>
+              </div>
+            </div>
+
+            <div class="movie-player-right">
+              <!-- Conditional Download Button: only visible when current source permits downloading -->
+              <a
+                id="btn-player-download"
+                class="btn-movie-download hidden"
+                href="#"
+                download
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Download Movie"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Download</span>
+              </a>
+
+              <button type="button" id="btn-movie-player-diagnostics" class="btn-movie-tool" title="Provider Health &amp; Diagnostics">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                </svg>
+              </button>
+
+              <button type="button" id="btn-movie-pip" class="btn-movie-tool" title="Picture-in-Picture">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="3" width="20" height="14" rx="2"></rect>
+                  <rect x="12" y="9" width="8" height="6" rx="1" fill="currentColor"></rect>
+                </svg>
+              </button>
+              <button type="button" id="btn-movie-fullscreen" class="btn-movie-tool" title="Fullscreen">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Video Player Stage with BokitCord Embedded Player -->
+          <div class="movie-player-stage" id="movie-player-stage">
+            <div class="movie-player">
+              <iframe
+                id="movie-player-frame"
+                allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
+                allowfullscreen
+                scrolling="no"
+                referrerpolicy="origin"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= MOVIE DETAILS MODAL ================= -->
+    <div id="movie-details-modal" class="modal-overlay hidden" aria-label="Movie Details">
+      <div class="movie-modal-card">
+        <div class="movie-modal-hero" id="movie-modal-hero">
+          <div class="movie-modal-backdrop-img" id="movie-modal-backdrop-img"></div>
+          <div class="movie-modal-hero-gradient"></div>
+          <button type="button" id="btn-close-movie-modal" class="movie-modal-close" title="Close">&times;</button>
+        </div>
+
+        <div class="movie-modal-body custom-scrollbar">
+          <div class="movie-modal-main">
+            <div class="movie-modal-poster-wrap">
+              <img id="movie-modal-poster-img" src="" alt="Poster" class="movie-modal-poster" />
+              <div class="movie-modal-badges">
+                <span id="movie-modal-rating-badge" class="modal-badge-rating">⭐ 8.8</span>
+                <span id="movie-modal-hd-badge" class="modal-badge-hd">HD</span>
+              </div>
+            </div>
+
+            <div class="movie-modal-info">
+              <h2 id="movie-modal-title" class="movie-modal-title">Movie Title</h2>
+              
+              <div class="movie-modal-meta-row">
+                <span id="movie-modal-year" class="modal-meta-pill">2024</span>
+                <span id="movie-modal-rated" class="modal-meta-pill">PG-13</span>
+                <span id="movie-modal-runtime" class="modal-meta-pill">148 min</span>
+                <span id="movie-modal-genres" class="modal-genres-text">Action, Sci-Fi</span>
+              </div>
+
+              <div class="movie-modal-synopsis-wrap">
+                <h4 class="modal-section-heading">Overview</h4>
+                <p id="movie-modal-plot" class="movie-modal-plot">Movie overview and synopsis will appear here.</p>
+              </div>
+
+              <div class="movie-modal-people-grid">
+                <div class="people-item">
+                  <span class="people-label">Director</span>
+                  <span id="movie-modal-director" class="people-value">Christopher Nolan</span>
+                </div>
+                <div class="people-item">
+                  <span class="people-label">Cast</span>
+                  <span id="movie-modal-actors" class="people-value">Actors list</span>
+                </div>
+              </div>
+
+              <!-- TV Series Seasons & Episodes Explorer (visible for TV shows) -->
+              <div id="movie-modal-tv-section" class="movie-modal-tv-section hidden">
+                <div class="tv-season-header">
+                  <h4 class="modal-section-heading">Episodes &amp; Seasons</h4>
+                  <div class="tv-season-select-wrap">
+                    <label for="movie-modal-season-select">Season:</label>
+                    <select id="movie-modal-season-select" class="movie-season-dropdown"></select>
+                  </div>
+                </div>
+                <div id="movie-modal-episodes-list" class="movie-episodes-list custom-scrollbar">
+                  <!-- Episodes injected dynamically -->
+                </div>
+              </div>
+
+              <!-- Upstream Playback Servers -->
+              <div class="movie-modal-servers-section">
+                <h4 class="modal-section-heading">Select Playback Server / Source</h4>
+                <div id="movie-modal-servers-list" class="movie-server-pills-list">
+                  <!-- Injected dynamically -->
+                </div>
+              </div>
+
+              <!-- Action buttons & Conditional Download Button -->
+              <div class="movie-modal-actions-row">
+                <button type="button" id="btn-modal-watch-now" class="btn-modal-play">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                  <span id="modal-watch-label">Stream Movie</span>
+                </button>
+
+                <button type="button" id="btn-modal-trailer" class="btn-modal-secondary" title="Watch Official Trailer">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                  <span>Trailer</span>
+                </button>
+
+                <button type="button" id="btn-modal-watchlist" class="btn-modal-secondary" title="Save to Watchlist">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                  </svg>
+                  <span id="modal-watchlist-text">Watchlist</span>
+                </button>
+
+                <!-- Conditional Download Button: only enabled/clickable when selected source permits downloading -->
+                <a
+                  id="btn-modal-download"
+                  class="btn-modal-download hidden"
+                  href="#"
+                  download
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                  <span id="modal-download-label">Download Movie</span>
+                </a>
+
+                <!-- Notice when download is not permitted for the selected server -->
+                <div id="modal-download-notice" class="modal-download-notice">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                  </svg>
+                  <span>Streaming Only &bull; Direct download is not permitted by this provider.</span>
+                </div>
+
+                <!-- Similar Movies & Recommendations Row -->
+                <div id="movie-modal-similar-section" class="movie-modal-similar-section hidden">
+                  <h4 class="modal-section-heading">Similar Movies &amp; Recommendations</h4>
+                  <div id="movie-modal-similar-list" class="movie-modal-similar-list custom-scrollbar">
+                    <!-- Cards injected dynamically -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= MOVIE TRAILER MODAL ================= -->
+    <div id="movie-trailer-modal" class="modal-overlay hidden" aria-label="Official Trailer">
+      <div class="movie-trailer-card">
+        <div class="movie-trailer-header">
+          <div class="movie-trailer-title-wrap">
+            <span class="movie-trailer-icon">🎬</span>
+            <h3 id="movie-trailer-title" class="movie-trailer-title">Movie Trailer</h3>
+          </div>
+          <button type="button" id="btn-close-trailer-modal" class="movie-modal-close" title="Close Trailer">&times;</button>
+        </div>
+        <div class="movie-trailer-frame-wrap">
+          <iframe id="movie-trailer-frame" class="movie-trailer-frame" allow="fullscreen; autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= PROVIDER STATUS & DIAGNOSTICS MODAL ================= -->
+    <div id="movie-status-modal" class="modal-overlay hidden" aria-label="Provider Health Diagnostics">
+      <div class="movie-status-modal-card">
+        <div class="movie-status-modal-header">
+          <div class="status-modal-title-wrap">
+            <span class="status-pulse-indicator"></span>
+            <div>
+              <h2 class="status-modal-title">Streaming &amp; Metadata Provider Diagnostics</h2>
+              <p class="status-modal-sub">Real-time latency, health probing, and error telemetry for BokitCord cinema adapters</p>
+            </div>
+          </div>
+          <div class="status-modal-header-actions">
+            <button type="button" id="btn-retest-providers" class="btn-status-retest">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <polyline points="23 4 23 10 17 10"></polyline>
+                <polyline points="1 20 1 14 7 14"></polyline>
+                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+              </svg>
+              <span>Run Live Health Test</span>
+            </button>
+            <button type="button" id="btn-close-movie-status-modal" class="btn-modal-close" title="Close">&times;</button>
+          </div>
+        </div>
+
+        <div class="movie-status-modal-body custom-scrollbar">
+          <!-- Summary Metric Cards -->
+          <div class="status-metrics-grid" id="status-metrics-grid">
+            <div class="status-metric-card">
+              <span class="metric-label">Operational Providers</span>
+              <span class="metric-val text-green" id="metric-healthy-count">--</span>
+              <span class="metric-sub" id="metric-total-count">-- configured</span>
+            </div>
+            <div class="status-metric-card">
+              <span class="metric-label">Average Latency</span>
+              <span class="metric-val text-cyan" id="metric-avg-latency">-- ms</span>
+              <span class="metric-sub">P-Stream Probe Speed</span>
+            </div>
+            <div class="status-metric-card">
+              <span class="metric-label">Failover Engine</span>
+              <span class="metric-val text-emerald" id="metric-failover-status">Active</span>
+              <span class="metric-sub">Zero-Downtime Auto Switch</span>
+            </div>
+            <div class="status-metric-card">
+              <span class="metric-label">Self-Hosted Media</span>
+              <span class="metric-val text-purple" id="metric-local-count">-- items</span>
+              <span class="metric-sub" id="metric-local-bytes">-- MB</span>
+            </div>
+          </div>
+
+          <!-- Playback Streaming Servers Table -->
+          <div class="status-table-section">
+            <h3 class="status-section-heading">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+              <span>Streaming Playback Adapters</span>
+            </h3>
+            <div class="status-table-responsive">
+              <table class="status-table" id="status-playback-table">
+                <thead>
+                  <tr>
+                    <th>Server / Provider</th>
+                    <th>Type</th>
+                    <th>Quality</th>
+                    <th>Status</th>
+                    <th>Latency</th>
+                    <th>Downloads</th>
+                    <th>Errors</th>
+                  </tr>
+                </thead>
+                <tbody id="status-playback-tbody">
+                  <!-- Injected via JavaScript -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Metadata & Catalog Adapters Table -->
+          <div class="status-table-section">
+            <h3 class="status-section-heading">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <span>Metadata &amp; Search Adapters</span>
+            </h3>
+            <div class="status-table-responsive">
+              <table class="status-table" id="status-metadata-table">
+                <thead>
+                  <tr>
+                    <th>Adapter</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th>Latency</th>
+                    <th>API Key / Auth</th>
+                    <th>Errors</th>
+                  </tr>
+                </thead>
+                <tbody id="status-metadata-tbody">
+                  <!-- Injected via JavaScript -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Developer Provider Diagnostics (12 Telemetry Metrics) -->
+          <div class="status-table-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <h3 class="status-section-heading" style="margin-bottom: 0;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 20h9"></path>
+                  <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                </svg>
+                <span>Live Provider Telemetry (12 Diagnostics Metrics)</span>
+              </h3>
+              <div style="display: flex; gap: 8px; align-items: center;">
+                <select id="diag-select-provider" class="player-select" style="padding: 4px 8px; font-size: 11px;">
+                  <option value="vidrift">vidrift</option>
+                  <option value="videasy">videasy</option>
+                  <option value="vidfast">vidfast</option>
+                  <option value="vidlink">vidlink</option>
+                  <option value="vidsrc">vidsrc</option>
+                  <option value="vidzee">vidzee</option>
+                  <option value="anyembed">anyembed</option>
+                  <option value="autoembed">autoembed</option>
+                  <option value="local-stream">local-stream</option>
+                </select>
+                <input id="diag-input-id" type="text" value="4247" placeholder="ID (e.g. 4247)" style="width: 70px; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; color: #fff; padding: 3px 6px; font-size: 11px;" />
+                <button type="button" id="btn-run-diag" class="btn-status-retest" style="padding: 4px 10px; font-size: 11px;">Inspect</button>
+              </div>
+            </div>
+            <div class="status-table-responsive">
+              <table class="status-table" id="status-telemetry-table">
+                <thead>
+                  <tr>
+                    <th style="width:80px;">Metric #</th>
+                    <th style="width:200px;">Telemetry Field</th>
+                    <th>Diagnostic Value</th>
+                  </tr>
+                </thead>
+                <tbody id="status-telemetry-tbody">
+                  <!-- Injected via JavaScript from /api/movies/diagnostics/:provider/:id -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Self-Hosted & Network Policy Note -->
+          <div class="status-config-footer">
+            <div class="config-footer-row">
+              <span class="config-footer-label">Self-Hosted Config:</span>
+              <code class="config-footer-code">movies.config.json</code>
+            </div>
+            <div class="config-footer-row">
+              <span class="config-footer-label">Range-Seeking (HTTP 206):</span>
+              <span class="badge-tag-cyan">Enabled (Native seeking for authorized MKV/MP4/WebM)</span>
+            </div>
+            <div class="config-footer-row">
+              <span class="config-footer-label">Network Compliance:</span>
+              <span class="badge-tag-green">Normal HTTPS, Zero Bypass Scripts, Dynamic Multi-Server Fallback</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= BOKIT ADMIN REVIEW MODAL ================= -->
+    <div id="modal-admin-requests" class="modal-overlay hidden">
+      <div class="modal-card modal-admin-card">
+        <header class="modal-header">
+          <div class="modal-header-icon admin-crown">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <div>
+            <h3 class="modal-title">Account Approval Requests</h3>
+            <p class="modal-subtitle">Logged in as <strong>bokit</strong> &bull; Review, approve, or reject new accounts</p>
+          </div>
+          <button id="btn-close-admin-modal" class="modal-close-btn" title="Close">&times;</button>
+        </header>
+
+        <div class="modal-tabs">
+          <button id="admin-tab-pending" class="modal-tab-btn active">Pending Requests</button>
+          <button id="admin-tab-history" class="modal-tab-btn">Review History</button>
+          <button id="admin-tab-users" class="modal-tab-btn">Manage Accs</button>
+        </div>
+
+        <div class="modal-body custom-scrollbar">
+          <div id="admin-requests-list" class="requests-list">
+            <!-- Injected dynamically -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= REJECT REASON PROMPT MODAL ================= -->
+    <div id="modal-reject-reason" class="modal-overlay hidden">
+      <div class="modal-card modal-small-card">
+        <header class="modal-header danger-header">
+          <h3 class="modal-title">Decline Account Request</h3>
+          <button id="btn-close-reject-modal" class="modal-close-btn">&times;</button>
+        </header>
+        <div class="modal-body">
+          <p class="reject-prompt-text">
+            Provide a note explaining why <strong id="reject-target-user">@user</strong> cannot be created. The applicant will see this note when they check their status.
+          </p>
+          <div class="form-group">
+            <label for="reject-note-input">REJECTION REASON / NOTE FOR APPLICANT</label>
+            <textarea
+              id="reject-note-input"
+              rows="4"
+              placeholder="e.g. Please choose a different username, or provide more details in your note."
+              required
+            ></textarea>
+          </div>
+        </div>
+        <footer class="modal-footer">
+          <button id="btn-cancel-reject" class="btn btn-secondary">Cancel</button>
+          <button id="btn-confirm-reject" class="btn btn-danger">Confirm & Send Rejection</button>
+        </footer>
+      </div>
+    </div>
+
+    <!-- ================= RICH EMBED BUILDER MODAL ================= -->
+    <div id="modal-embed-builder" class="modal-overlay hidden">
+      <div class="modal-card modal-embed-card">
+        <header class="modal-header">
+          <div class="modal-header-icon embed-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="3" y1="9" x2="21" y2="9"></line>
+              <line x1="9" y1="21" x2="9" y2="9"></line>
+            </svg>
+          </div>
+          <div>
+            <h3 class="modal-title">Create Rich Embed Message</h3>
+            <p class="modal-subtitle">Compose a Discord rich embed card with custom colors, fields, and live preview</p>
+          </div>
+          <button id="btn-close-embed-modal" class="modal-close-btn">&times;</button>
+        </header>
+
+        <div class="embed-builder-body">
+          <!-- Left Column: Inputs -->
+          <div class="embed-inputs-column custom-scrollbar">
+            <!-- Color Selector -->
+            <div class="form-group">
+              <label>ACCENT COLOR</label>
+              <div class="color-palette-picker">
+                <button type="button" class="color-dot active" style="background:#5865F2;" data-color="#5865F2" title="Blurple"></button>
+                <button type="button" class="color-dot" style="background:#57F287;" data-color="#57F287" title="Green"></button>
+                <button type="button" class="color-dot" style="background:#FEE75C;" data-color="#FEE75C" title="Yellow"></button>
+                <button type="button" class="color-dot" style="background:#EB459E;" data-color="#EB459E" title="Fuchsia"></button>
+                <button type="button" class="color-dot" style="background:#ED4245;" data-color="#ED4245" title="Red"></button>
+                <button type="button" class="color-dot" style="background:#00B0F4;" data-color="#00B0F4" title="Sky Blue"></button>
+                <button type="button" class="color-dot" style="background:#FFFFFF;" data-color="#FFFFFF" title="White"></button>
+                <input type="color" id="embed-custom-color" value="#5865F2" title="Custom Color" />
+              </div>
+            </div>
+
+            <!-- Title & URL -->
+            <div class="form-group">
+              <label for="embed-title">TITLE</label>
+              <input type="text" id="embed-title" placeholder="e.g. Announcement: Tournament Winner!" maxlength="256" />
+            </div>
+
+            <div class="form-group">
+              <label for="embed-url">TITLE LINK (OPTIONAL URL)</label>
+              <input type="url" id="embed-url" placeholder="https://..." />
+            </div>
+
+            <!-- Description -->
+            <div class="form-group">
+              <label for="embed-desc">DESCRIPTION</label>
+              <textarea id="embed-desc" rows="3" placeholder="Enter message description... (Markdown **bold**, *italic*, `code` supported)" maxlength="2048"></textarea>
+            </div>
+
+            <!-- Author & Footer -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="embed-author">AUTHOR NAME</label>
+                <input type="text" id="embed-author" placeholder="e.g. Bokit Bot" />
+              </div>
+              <div class="form-group">
+                <label for="embed-footer">FOOTER TEXT</label>
+                <input type="text" id="embed-footer" placeholder="e.g. BokitCord • Today at 3:30 PM" />
+              </div>
+            </div>
+
+            <!-- Image & Thumbnail URLs -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="embed-img">BANNER IMAGE URL</label>
+                <input type="url" id="embed-img" placeholder="https://example.com/banner.png" />
+              </div>
+              <div class="form-group">
+                <label for="embed-thumb">THUMBNAIL URL</label>
+                <input type="url" id="embed-thumb" placeholder="https://example.com/thumb.png" />
+              </div>
+            </div>
+
+            <!-- Fields Section -->
+            <div class="form-group">
+              <div class="fields-section-header">
+                <label>FIELDS</label>
+                <button type="button" id="btn-add-embed-field" class="btn-text-action">+ Add Field</button>
+              </div>
+              <div id="embed-fields-container" class="embed-fields-list">
+                <!-- Field rows injected dynamically -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Live Discord Preview -->
+          <div class="embed-preview-column custom-scrollbar">
+            <div class="preview-header">LIVE MESSAGE PREVIEW</div>
+            <div class="discord-message-preview">
+              <div class="preview-avatar">B</div>
+              <div class="preview-message-content">
+                <div class="preview-user-row">
+                  <span class="preview-name">BokitCord</span>
+                  <span class="preview-badge">BOT</span>
+                  <span class="preview-time">Today at 12:00 PM</span>
+                </div>
+                <div id="embed-live-card" class="embed-card">
+                  <div id="preview-author-row" class="embed-author-row hidden">
+                    <span id="preview-author-text"></span>
+                  </div>
+                  <div id="preview-title-row" class="embed-title-row hidden">
+                    <a id="preview-title-link" href="#" target="_blank" rel="noopener noreferrer"></a>
+                  </div>
+                  <div id="preview-desc" class="embed-desc hidden"></div>
+                  <div id="preview-fields-grid" class="embed-fields-grid hidden"></div>
+                  <div id="preview-banner-wrap" class="embed-banner-wrap hidden">
+                    <img id="preview-banner-img" src="" alt="Embed Banner" />
+                  </div>
+                  <div id="preview-thumb-wrap" class="embed-thumb-wrap hidden">
+                    <img id="preview-thumb-img" src="" alt="Embed Thumbnail" />
+                  </div>
+                  <div id="preview-footer-row" class="embed-footer-row hidden">
+                    <span id="preview-footer-text"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <footer class="modal-footer">
+          <button id="btn-cancel-embed" class="btn btn-secondary">Cancel</button>
+          <button id="btn-send-embed" class="btn btn-blurple">Send Embed to Channel</button>
+        </footer>
+      </div>
+    </div>
+
+    <!-- ================= USER PROFILE FLYOUT MODAL ================= -->
+    <div id="modal-user-profile" class="modal-overlay hidden">
+      <div class="modal-card modal-profile-card">
+        <div class="profile-banner"></div>
+        <div class="profile-avatar-row">
+          <div class="profile-avatar-wrapper" id="profile-avatar-wrapper">
+            <div id="profile-modal-avatar" class="profile-avatar-large">U</div>
+            <div id="profile-avatar-overlay" class="profile-avatar-overlay hidden" title="Change Avatar">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                <circle cx="12" cy="13" r="4"></circle>
+              </svg>
+              <span>CHANGE</span>
+            </div>
+            <input type="file" id="input-avatar-upload" accept="image/png,image/jpeg,image/gif,image/webp" class="hidden">
+          </div>
+          <div class="profile-badges">
+            <span id="profile-badge-role" class="badge-role">MEMBER</span>
+            <span id="profile-badge-membership" class="badge-role hidden" style="background:linear-gradient(135deg,#f59e0b,#d97706); color:#fff; margin-left:6px;">💎 NO-ADS MEMBER</span>
+          </div>
+        </div>
+        <div class="profile-details">
+          <h3 id="profile-modal-displayname" class="profile-name">Display Name</h3>
+          <div class="username-copy-box">
+            <span id="profile-modal-username" class="profile-username">@username</span>
+            <button id="btn-copy-username" class="btn-copy-tag" title="Copy Username">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span>Copy Username</span>
+            </button>
+          </div>
+
+          <!-- Name / Username Edit Section (visible when viewing own profile) -->
+          <div id="profile-name-edit-section" class="profile-name-edit-section hidden">
+            <div class="name-edit-header-row">
+              <span class="name-edit-header-title">ACCOUNT IDENTITY</span>
+              <button id="btn-toggle-name-edit" class="btn-edit-bio" type="button" title="Change Name">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle; margin-right:3px;">
+                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                </svg>
+                <span id="name-edit-toggle-label">Edit Name</span>
+              </button>
+            </div>
+
+            <!-- Cooldown or Admin Bypass Status Badge -->
+            <div id="profile-name-status-badge" class="name-status-badge">
+              <span class="status-badge-icon">⏳</span>
+              <span id="profile-name-cooldown-text">Checking cooldown status...</span>
+            </div>
+
+            <!-- Expandable Edit Form -->
+            <div id="profile-name-edit-form" class="profile-name-edit-form hidden">
+              <div class="name-input-group">
+                <label for="input-edit-displayname">Display Name</label>
+                <input type="text" id="input-edit-displayname" class="input-profile-name" maxlength="32" placeholder="Your display name" autocomplete="off" />
+              </div>
+              <div class="name-input-group">
+                <label for="input-edit-username">Unique Username (@)</label>
+                <input type="text" id="input-edit-username" class="input-profile-name" maxlength="24" placeholder="unique_username" autocomplete="off" />
+              </div>
+              <div class="name-edit-actions">
+                <button type="button" id="btn-cancel-name-edit" class="btn btn-secondary btn-xs">Cancel</button>
+                <button type="button" id="btn-save-name-edit" class="btn btn-blurple btn-xs">Save Name</button>
+              </div>
+              <div id="profile-name-feedback" class="profile-name-feedback"></div>
+            </div>
+          </div>
+
+          <div class="profile-bio-box">
+            <div class="bio-label-row">
+              <div class="bio-label">ABOUT ME / APPLICATION NOTE</div>
+              <button id="btn-edit-bio" class="btn-edit-bio hidden" type="button" title="Edit About Me">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle; margin-right:3px;">
+                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                </svg>
+                <span>Edit</span>
+              </button>
+            </div>
+            <p id="profile-modal-bio" class="bio-text">No bio provided.</p>
+
+            <!-- Editable Bio Form (visible when editing own bio) -->
+            <div id="profile-bio-edit-wrap" class="profile-bio-edit-wrap hidden">
+              <textarea id="input-profile-bio" class="input-profile-bio" maxlength="200" rows="3" placeholder="Tell everyone about yourself (max 200 characters)..."></textarea>
+              <div class="bio-edit-footer">
+                <span id="bio-char-count" class="bio-char-count">0/200</span>
+                <div class="bio-edit-buttons">
+                  <button id="btn-cancel-bio" type="button" class="btn btn-secondary btn-xs">Cancel</button>
+                  <button id="btn-save-bio" type="button" class="btn btn-blurple btn-xs">Save</button>
+                </div>
+              </div>
+              <div id="profile-bio-status" class="profile-bio-status"></div>
+            </div>
+          </div>
+
+          <!-- Self Avatar Actions (visible when viewing own profile) -->
+          <div id="profile-avatar-actions" class="profile-avatar-actions hidden">
+            <div class="avatar-actions-header">CUSTOM AVATAR</div>
+            <div class="avatar-buttons-group">
+              <button id="btn-profile-change-avatar" class="btn btn-secondary btn-sm" type="button">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle; margin-right:4px;">
+                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                  <circle cx="12" cy="13" r="4"></circle>
+                </svg>
+                Change Avatar
+              </button>
+              <button id="btn-profile-remove-avatar" class="btn btn-danger-outline btn-sm hidden" type="button">
+                Remove Avatar
+              </button>
+            </div>
+            <div id="profile-avatar-status" class="profile-avatar-status"></div>
+          </div>
+
+          <!-- Non-Admin Self Profile: Stop Ads ($5/Monthly) Button & Notice -->
+          <div id="profile-stop-ads-section" class="hidden" style="margin-top:12px;">
+            <button id="btn-profile-stop-ads" type="button" class="btn btn-block" style="background:linear-gradient(135deg,#f59e0b,#d97706); color:#fff; font-weight:700; border:none; padding:10px 14px; border-radius:8px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; box-shadow:0 4px 12px rgba(245,158,11,0.28);">
+              <span>🚫</span>
+              <span id="profile-stop-ads-btn-text">You have to pay $5 monthly to stop ads</span>
+            </button>
+            <div id="profile-stop-ads-notice" class="hidden" style="margin-top:8px; padding:10px 12px; border-radius:8px; background:rgba(245,158,11,0.12); border:1px solid rgba(245,158,11,0.35); color:#fde68a; font-size:12.5px; line-height:1.45; text-align:center;">
+              💎 <strong>You have to pay $5 monthly to stop ads.</strong><br>
+              Only the <strong>@bokit</strong> account can grant the No-Ads Membership to accounts. Message <strong>@bokit</strong> to activate your membership!
+            </div>
+          </div>
+
+          <div class="profile-actions-row">
+            <button id="btn-profile-start-chat" class="btn btn-blurple btn-block hidden" style="margin-bottom:8px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle; margin-right:6px;">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              </svg>
+              <span>Message @<span id="profile-btn-chat-target">username</span></span>
+            </button>
+            <button id="btn-profile-add-friend" class="btn btn-blurple btn-block">
+              Send Friend Request (@<span id="profile-btn-username-target">username</span>)
+            </button>
+            <button id="btn-profile-toggle-membership" class="btn btn-secondary btn-block hidden" style="margin-top:8px; background:linear-gradient(135deg,#f59e0b,#d97706); color:#fff; border:none; font-weight:600;">
+              <span>💎 </span>
+              <span id="profile-btn-membership-text">Give Membership (No Ads)</span>
+            </button>
+            <button id="btn-profile-toggle-admin" class="btn btn-secondary btn-block hidden" style="margin-top:8px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle; margin-right:6px;">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+              <span id="profile-btn-admin-text">Grant Admin Role</span>
+            </button>
+            <button id="btn-profile-delete-user" class="btn btn-danger btn-block hidden" style="margin-top:8px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle; margin-right:6px;">
+                <polyline points="3 6 5 6 21 6"></polyline>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+              </svg>
+              <span>Delete Account (Admin)</span>
+            </button>
+          </div>
+        </div>
+        <button id="btn-close-profile-modal" class="modal-close-btn" style="top:12px; right:12px;">&times;</button>
+      </div>
+    </div>
+
+    <!-- ================= TELEGRAM KEY VERIFICATION MODAL ================= -->
+    <div id="modal-encryption-info" class="modal-overlay hidden">
+      <div class="modal-card modal-telegram-crypto">
+        <header class="modal-header telegram-header">
+          <div class="modal-header-icon telegram-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="modal-title">Telegram End-to-End Encryption</h3>
+            <p class="modal-subtitle">Zero-Knowledge AES-256-GCM Secure Channel</p>
+          </div>
+          <button id="btn-close-crypto-modal" class="modal-close-btn">&times;</button>
+        </header>
+
+        <div class="modal-body custom-scrollbar">
+          <div class="crypto-hero-card">
+            <div class="crypto-shield-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+              <span>E2EE ACTIVE</span>
+            </div>
+            <p class="crypto-explainer">Messages, media attachments, and shared links are encrypted directly in your browser using AES-256-GCM before transmission. The server never sees your plaintext data.</p>
+          </div>
+
+          <div class="telegram-fingerprint-box">
+            <div class="fingerprint-label">VISUAL ENCRYPTION KEY</div>
+            <div id="crypto-emojis-row" class="crypto-emojis-row">🔐 ⚡ 🛡️ 💎</div>
+            <p class="fingerprint-subtext">If these 4 emojis match on both participants' screens, your chat is 100% secure from interception.</p>
+          </div>
+
+          <div class="crypto-specs-grid">
+            <div class="spec-row">
+              <span class="spec-label">Cipher</span>
+              <span class="spec-val">AES-256-GCM</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Key Exchange</span>
+              <span class="spec-val">ECDH (P-256)</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">KDF</span>
+              <span class="spec-val">PBKDF2-HMAC-SHA256</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Hex Fingerprint</span>
+              <code id="crypto-hex-fingerprint" class="spec-code">A8:3F:B1:9C:...</code>
+            </div>
+          </div>
+        </div>
+        <footer class="modal-footer">
+          <button id="btn-done-crypto-modal" class="btn btn-blurple">Got It</button>
+        </footer>
+      </div>
+    </div>
+
+    <!-- ================= MODAL: PRIVACY POLICY & ADVERTISING DISCLOSURES ================= -->
+    <div id="modal-privacy-policy" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="privacy-modal-title">
+      <div class="modal-card legal-modal-card">
+        <header class="modal-header">
+          <div class="modal-title-wrap">
+            <span class="modal-header-icon">🛡️</span>
+            <h2 id="privacy-modal-title" class="modal-title">Privacy Policy &amp; Disclosures</h2>
+          </div>
+          <button type="button" class="btn-close-modal" id="btn-close-privacy-policy" aria-label="Close dialog">&times;</button>
+        </header>
+        <div class="modal-body custom-scrollbar legal-modal-body">
+          <p class="legal-effective-date"><strong>Effective Date:</strong> January 2026</p>
+          <h3>1. Privacy &amp; Data Collection Overview</h3>
+          <p>BokitCord is engineered as a privacy-respecting educational web application. We do not sell your personal data, conduct cross-site fingerprinting, or harvest identity metrics.</p>
+          <h3>2. Local Browser Storage &amp; Cookies</h3>
+          <p>Our platform uses standard client-side browser storage (<code>localStorage</code> and session tokens) solely to maintain your authentication status, active chat session, custom avatars, and code drafts in the sandbox editor.</p>
+          <h3>3. Zero-Knowledge Client-Side Encryption</h3>
+          <p>Direct messages and private channels utilize Telegram-style AES-256-GCM encryption with browser-generated cryptographic keys. Plaintext message bodies and encryption keys are never stored unencrypted on our servers.</p>
+          <h3>4. Third-Party Advertising &amp; Monetization</h3>
+          <p>To support ongoing server hosting, bandwidth costs, and emulator runtime maintenance, BokitCord partners with verified third-party advertising networks including <strong>Monetag</strong>.</p>
+          <div class="legal-callout-box">
+            <h4>💡 Ad Experience Guarantee</h4>
+            <p>Advertisements on BokitCord are strictly confined to preroll overlays when loading games. Chat channels, developer tools, and navigation are 100% ad-free.</p>
+          </div>
+          <h3>5. Contact &amp; Inquiries</h3>
+          <p>If you have any questions or data requests regarding this Privacy Policy or advertising partnerships, contact the administrator at <a href="mailto:admin@bokitware.org" style="color:#5865f2;">admin@bokitware.org</a>.</p>
+        </div>
+        <footer class="modal-footer">
+          <button type="button" id="btn-accept-privacy" class="btn btn-primary">Understood</button>
+        </footer>
+      </div>
+    </div>
+
+    <!-- ================= MODAL: TERMS OF SERVICE ================= -->
+    <div id="modal-terms-service" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="terms-modal-title">
+      <div class="modal-card legal-modal-card">
+        <header class="modal-header">
+          <div class="modal-title-wrap">
+            <span class="modal-header-icon">📜</span>
+            <h2 id="terms-modal-title" class="modal-title">Terms of Service &amp; Fair Use</h2>
+          </div>
+          <button type="button" class="btn-close-modal" id="btn-close-terms-service" aria-label="Close dialog">&times;</button>
+        </header>
+        <div class="modal-body custom-scrollbar legal-modal-body">
+          <p class="legal-effective-date"><strong>Last Updated:</strong> January 2026</p>
+          <h3>1. Acceptance of Terms</h3>
+          <p>By accessing BokitWare games, BokitCord chat channels, or standalone cloud bundles, you agree to comply with these Terms of Service and all applicable laws.</p>
+          <h3>2. Educational &amp; Preservation Fair Use</h3>
+          <p>The arcade titles hosted within BokitWare are preserved for digital computer history, WebAssembly performance evaluation, and non-commercial educational demonstration under Fair Use doctrine.</p>
+          <h3>3. Community Standards</h3>
+          <p>Users must not engage in harassment, spamming, malicious script injection, or unauthorized server scraping. Accounts violating community conduct are subject to immediate suspension.</p>
+          <h3>4. Disclaimer of Warranties</h3>
+          <p>All games and emulator runtimes (including Ruffle and WebGL) are provided "AS IS" without warranty of continuous uptime or data persistence.</p>
+        </div>
+        <footer class="modal-footer">
+          <button type="button" id="btn-accept-terms" class="btn btn-primary">Close</button>
+        </footer>
+      </div>
+    </div>
+
+    <!-- ================= MODAL: MONETAG AD & VERIFICATION SETTINGS ================= -->
+    <div id="modal-monetag-settings" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="monetag-settings-title">
+      <div class="modal-card monetag-settings-card">
+        <header class="modal-header">
+          <div class="modal-title-wrap">
+            <span class="modal-header-icon">💰</span>
+            <h2 id="monetag-settings-title" class="modal-title">Monetag Ads &amp; Site Verification</h2>
+          </div>
+          <button type="button" class="btn-close-modal" id="btn-close-monetag-settings" aria-label="Close dialog">&times;</button>
+        </header>
+        <div class="modal-body custom-scrollbar">
+          <div class="monetag-status-row">
+            <div class="status-left">
+              <span class="status-indicator-dot online"></span>
+              <span class="status-text">Site Verification Status:</span>
+            </div>
+            <span id="monetag-status-badge" class="monetag-status-badge">Ready for Monetag Verification</span>
+          </div>
+
+          <div class="monetag-explanation-box">
+            <p><strong>🎯 Game-Only Ad Rule:</strong> As requested, ads are strictly configured to trigger <em>only when clicking on a new game to play</em>. Navigation, chat, and settings are completely ad-free.</p>
+          </div>
+
+          <form id="form-monetag-config" class="monetag-form">
+            <div class="form-group">
+              <label for="monetag-input-tag">1. Monetag Site Verification Code</label>
+              <input type="text" id="monetag-input-tag" placeholder="e.g. b1c2d3e4f5a6b7c8d9e0" class="input-text" autocomplete="off" />
+              <small class="form-help-text">This will be injected into <code>&lt;meta name="monetag" content="..."&gt;</code> in the page <code>&lt;head&gt;</code> for instant Monetag approval.</small>
+            </div>
+
+            <div class="form-group">
+              <label for="monetag-input-zone">2. Monetag Interstitial Tag / Zone ID</label>
+              <input type="text" id="monetag-input-zone" placeholder="e.g. 8821034 or https://alwingulla.com/88/tag.min.js" class="input-text" autocomplete="off" />
+              <small class="form-help-text">Monetag's Interstitial or In-Page Push script tag for game prerolls.</small>
+            </div>
+
+            <div class="form-group">
+              <label for="monetag-input-direct">3. Monetag DirectLink / SmartLink (Optional)</label>
+              <input type="text" id="monetag-input-direct" placeholder="e.g. https://omg10.com/4/8821034" class="input-text" autocomplete="off" />
+              <small class="form-help-text">Optional direct link for interstitial monetization.</small>
+            </div>
+
+            <div class="form-group" style="display:none;">
+              <input type="checkbox" id="monetag-input-auto-open" />
+              <label for="monetag-input-auto-open">Auto-open</label>
+              <button type="button" id="btn-open-monetag-settings">Open</button>
+            </div>
+
+            <div class="form-actions-row">
+              <button type="submit" id="btn-save-monetag" class="btn btn-primary">
+                <span>💾 Save &amp; Apply Changes</span>
+              </button>
+              <button type="button" id="btn-test-game-ad" class="btn btn-secondary">
+                <span>▶ Preview Game Ad</span>
+              </button>
+            </div>
+          </form>
+
+          <div class="monetag-verification-files-box">
+            <h4>📁 Monetag HTML Verification File</h4>
+            <p>If Monetag asks you to upload an HTML file (e.g. <code>monetag_verification.html</code> or <code>12345.html</code>), simply place the file inside the <code>public/</code> folder on your computer. It is served immediately at <code>/filename.html</code> with HTTP 200 OK!</p>
+          </div>
+        </div>
+        <footer class="modal-footer">
+          <button type="button" id="btn-done-monetag-settings" class="btn btn-secondary">Done</button>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= IMAGE LIGHTBOX MODAL ================= -->
+  <div id="modal-image-lightbox" class="lightbox-overlay hidden" tabindex="-1" role="dialog" aria-modal="true" aria-label="Image Preview Lightbox">
+    <div class="lightbox-backdrop" id="lightbox-backdrop"></div>
+    <div class="lightbox-content-card">
+      <button type="button" id="btn-close-lightbox" class="lightbox-close-btn" title="Close (Esc)">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <div class="lightbox-img-wrapper">
+        <img id="lightbox-img" src="" alt="Full view" class="lightbox-img" />
+      </div>
+      <div class="lightbox-footer">
+        <span id="lightbox-filename" class="lightbox-caption">image.png</span>
+        <a id="lightbox-download-link" href="" target="_blank" download class="lightbox-action-btn" title="Open full resolution in new tab">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          <span>Open Full Original</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Live Visitor Counter in Corner -->
+  <aside id="live-visitor-counter" class="live-visitor-counter" title="Active users currently on site" aria-label="Live visitors counter">
+    <span class="live-counter-dot" aria-hidden="true"></span>
+    <svg class="live-counter-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+      <circle cx="9" cy="7" r="4"></circle>
+      <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+      <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+    </svg>
+    <span id="live-visitor-count-text" class="live-visitor-count-text">1 person on site</span>
+  </aside>
+
+  <!-- Socket.io client -->
+  <script src="/socket.io/socket.io.js"></script>
+  <!-- Telegram-Style Web Crypto Engine -->
+  <script src="crypto.js"></script>
+  <!-- Main app script -->
+  <script src="app.js"></script>
+  <script>
+    (function() {
+      try {
+        // If cloak or stealth disguise is active, suppress external ad script to avoid Securly alerts
+        var savedCloak = localStorage.getItem('bokit_cloak') || localStorage.getItem('bokit_tab_cloak');
+        if (savedCloak && savedCloak !== 'none' && savedCloak !== 'default') return;
+
+        var s = document.createElement('script');
+        s.dataset.zone = '11930369';
+        s.src = 'https://n6wxm.com/vignette.min.js';
+        s.async = true;
+        s.onerror = function() {
+          // Silently clean up if blocked by school filter/adblocker
+          if (s.parentNode) s.parentNode.removeChild(s);
+        };
+        (document.body || document.documentElement).appendChild(s);
+      } catch (e) {}
+    })();
+  </script>
+</body>
+</html>
